@@ -177,7 +177,7 @@ input[type="search"] {
 }
 input[type="login"], input[type="password"] {
     color: #5d5d5d;
-    width: 100%;
+    width: 90%;
     padding: 8px 8px 8px 3%;
     border-color: transparent;
     border-radius: 8px 8px 8px 8px;
