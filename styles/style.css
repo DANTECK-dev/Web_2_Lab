@@ -177,7 +177,7 @@ input[type="search"] {
 }
 input[type="login"], input[type="password"] {
     color: #5d5d5d;
-    width: 90%;
+    width: 94%;
     padding: 8px 8px 8px 3%;
     border-color: transparent;
     border-radius: 8px 8px 8px 8px;
@@ -202,7 +202,8 @@ img, video, iframe{
     background-color: white;
 }
 #warning {
-    color: orangered;
+    color: red;
+    font-size: 24px;
 }
 iframe {
     width: 350px;
@@ -337,4 +338,60 @@ input {
     display: inline-block;
     width: 100%;
     align-content: center;
+}
+.btn_danger {
+    box-shadow: 0 0 5px 2px red;
+}
+
+/*Mobile CSS*/
+
+@media (max-width: 768px) {
+    .btn_menu {
+        text-align: left;
+        margin: 5px 5px 5px 5px;
+        padding-left: 4%;
+        padding-right: 40px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .btn_menu>li {
+        color: white;
+        text-align: right;
+        border-color: black;
+        display: inline-block;
+        background-color: grey;
+        border-radius: 6px;
+        padding: 10px 20px 10px 20px ;
+        margin: 0 5px 15px 5px;
+    }
+    header {
+        background-color: #29292A;
+        display: inline-block;
+        font-family: sans-serif;
+        color: #cacaca;
+        height: 20%;
+        width: 100%;
+        font-size: 0.8em;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding: 0 0 0 0;
+        min-width: 300px;
+    }
+    .header>h1 {
+        padding: 10px 10px 10px 36px;
+        font-weight: 30;
+        font-size: 30px;
+    }
+    .left_menu{
+        width: 0;
+        display: none;
+    }
+    .main {
+        margin-right: 20%;
+    }
 }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    h2 {
+        text-align: center;
+    }
+    img {
+        margin: 10px;
+    }
+    .task1, .task2, .task3, .task4, .task5, .task6 {
+        background: burlywood;
+        border-radius: 15px;
+        margin: 10px;
+    }
+    .task1>p{
+        padding: 20px;
+    }
+    ._2_box2, ._2_box3, ._2_box1 {
+        border-color: #29292A;
+        width: 200px;
+        height: 50px;
+        margin-bottom: 2px;
+        border-style: solid;
+    }
+    ._2_box1 {
+        background: linear-gradient(90deg, red 33%, white 33%);
+    }
+    ._2_box2 {
+        background: linear-gradient(90deg, orange 66%, white 66%);
+    }
+    ._2_box3 {
+        background: linear-gradient(90deg, green 100%, white 100%);
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 20px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .row {
+        display: flex;
+        margin:20px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    ._3_BT1, ._3_BT2, ._3_BT3, ._3_BT4, ._3_BT5 {
+        margin-left: 30px;
+        border-width: 1px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        width: 150px;
+        border-style: solid;
+        border-radius: 5px;
+    }
+    ._3_BT1 {
+        background: linear-gradient(cyan, white);
+    }
+</style>
+<body>
+<div class="task1">
+    <h2>Задание 1</h2>
+    <img src="styles/1a.png" width="200" height="100" align="left">
+    <img width="200" height="100" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/2005-11-14_ShadowLeg_Finished_medium.jpg/200px-2005-11-14_ShadowLeg_Finished_medium.jpg" align="right">
+    <p>
+        Создайте блок с границей. Этот блок должен занимать всю страницу, но
+        отступать от краев на 10px (margin). Добавьте в блок текст. Сделайте так, чтобы
+        этот текст отступал от краев блока на 20px (padding). Добавьте в этот текст
+        картинки: одну слева, одну справа. Сделайте, чтобы текст обтекал картинки.
+        Картинки должны отступать от текста на 10px.
+    </p>
+</div>
+<div class="task2">
+    <h2>Задание 2</h2>
+    <div class="row">
+        <div class="col">
+            <div class="_2_box1"></div>
+            <div class="_2_box2"></div>
+            <div class="_2_box3"></div>
+        </div>
+        <p>
+            Повторите, как показано на рисунке ниже. Размеры всех частей заданы в пикселах
+            и не меняются в процессе масштабирования окна. Для каждого объекта обойтись
+            одним элементом. Используйте линейный градиент для заполнения блоков.
+        </p>
+    </div>
+</div>
+<div class="task3">
+    <h2>Задание 3</h2>
+    <button class="_3_BT1">BUTTON</button>
+    <button class="_3_BT2">BUTTON</button>
+    <button class="_3_BT3">BUTTON</button>
+    <button class="_3_BT4">BUTTON</button>
+    <button class="_3_BT5">BUTTON</button>
+    <p>Создайте похожие кнопки с использованием градиента</p>
+</div>
+</body>
+</html>
