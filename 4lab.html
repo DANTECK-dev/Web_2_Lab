@@ -14,6 +14,7 @@
     .task1, .task2, .task3, .task4, .task5, .task6 {
         background: burlywood;
         border-radius: 15px;
+        padding: 1%;
         margin: 10px;
     }
     .task1>p{
@@ -52,7 +53,7 @@
         align-items: flex-start;
     }
     ._3_BT1, ._3_BT2, ._3_BT3, ._3_BT4, ._3_BT5 {
-        margin-left: 30px;
+        margin: 15px;
         border-width: 1px;
         padding-bottom: 5px;
         padding-top: 5px;
@@ -63,6 +64,109 @@
     ._3_BT1 {
         background: linear-gradient(cyan, white);
     }
+    ._3_BT2 {
+        background: linear-gradient(lightgreen, green, lightgreen);
+    }
+    ._3_BT3 {
+        background: linear-gradient(white 1%, skyblue 50%, cyan 95%);
+        color: white;
+    }
+    ._3_BT4 {
+        background: linear-gradient(white 20%, dimgray 45%, rgba(19, 19, 19, 0.98) 65%);
+        color: white;
+    }
+    ._3_BT5 {
+        border-style: inset;
+        border-width: 2px;
+        background: linear-gradient(lightgray, gray);
+    }
+    :is(div)>p{
+        text-align: center;
+    }
+    .task4 {
+        background: repeating-linear-gradient(45deg, #be5858, #be5858 3%, #414b8d 3%, #41538d 6%);
+        height: auto;
+        padding: 1%;
+    }
+    .task4>.container {
+        background: rgba(202, 202, 202, 0.56);
+        padding: 3%;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 20px;
+        margin-bottom: 5%;
+        color: white;
+    }
+    .task5 {
+        padding-left: 3%;
+        padding-right: 3%;
+        width: 600px;
+        height: 500px;
+    }
+    ._5_box1 {
+        width: calc(100% - 6%);
+        padding-left: 3%;
+        padding-right: 3%;
+        margin-bottom: 0;
+        margin-top: 0;
+        border-radius: 15px;
+        background: blueviolet;
+    }
+    ._5_box1_1, ._5_box1_2, ._5_box1_3, ._5_box1_4{
+        border-width: 2px;
+        width: 250px;
+        padding: 1%;
+        margin: 1%;
+        border-style: solid;
+        border-color: black;
+    }
+    ._5_box1_1, ._5_box1_4 {
+
+        margin: 1%;
+        height: 300px;
+    }
+    ._5_box1_2, ._5_box1_3 {
+
+        margin: 1%;
+        height: 60px;
+    }
+    ._5_box1_1 {
+        background: #414b8d;
+        border-top-left-radius: 10px;
+    }
+    ._5_box1_2 {
+        background: #be5858;
+        border-bottom-left-radius: 10px;
+    }
+    ._5_box1_3 {
+        background: aquamarine;
+        border-top-right-radius: 10px;
+    }
+    ._5_box1_4 {
+        background: darkkhaki;
+        border-bottom-right-radius: 10px;
+    }
+    .task6 {
+        padding: 3%;
+        min-width: 790px;
+        min-height: 790px;
+    }
+    ._6_box1, ._6_box2 {
+        width: 60%;
+        height: 60%;
+        margin: 5%;
+        padding: 5%;
+        horiz-align: center;
+    }
+    ._6_box1 {
+        margin: 15% auto auto 1%;
+        background: lightgray;
+    }
+    ._6_box2 {
+        margin: 15% 1% auto auto;
+        background: darkgray;
+    }
+    .start { width: 600px; height: 600px; margin: 0 auto;}
 </style>
 <body>
 <div class="task1">
@@ -100,6 +204,68 @@
     <button class="_3_BT4">BUTTON</button>
     <button class="_3_BT5">BUTTON</button>
     <p>Создайте похожие кнопки с использованием градиента</p>
+</div>
+<div class="task4">
+    <h2>Задание 4</h2>
+    <div class="container">
+        <p>
+            Поставьте повторяющийся полосатый градиент на фон страницы.
+            Создайте блок div с прозрачным цветным фоном. Поместите в
+            него какой-либо текст. Сделайте так, чтобы размер блока
+            всегда был по размеру веб-страницы, но отступал от каждого
+            края на небольшое расстояние (для вычисления размера блока
+            используйте calc()).  Текст внутри также должен отступать на
+            какое-либо расстояние от краев. Поменяйте размер и цвет текста.
+        </p>
+    </div>
+</div>
+<div class="task5">
+    <h2>Задание 5</h2>
+    <div class="_5_box1">
+        <div class="row">
+            <div class="col">
+                <div class="_5_box1_1">Создайте блоки в том же положении как показано на рисунке (используя свойство </div>
+                <div class="_5_box1_2"></div>
+            </div>
+            <div class="col">
+                <div class="_5_box1_3"></div>
+                <div class="_5_box1_4">float и display). Также необходимо закруглить углы блоков в том же положении.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="task6">
+    <h2>Задание 6</h2>
+    <div class="_6_box1 start">
+        <div class="_6_box2">
+            <div class="_6_box1">
+                <div class="_6_box2">
+                    <div class="_6_box1">
+                        <div class="_6_box2">
+                            <div class="_6_box1">
+                                <div class="_6_box2">
+                                    <div class="_6_box1">
+                                        <div class="_6_box2">
+                                            <div class="_6_box1">
+                                                <div class="_6_box2">
+                                                    <div class="_6_box1">
+                                                        <div class="_6_box2">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>С помощью позиционирования и других свойств повторить изображение: </p>
 </div>
 </body>
 </html>
