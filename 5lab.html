@@ -14,12 +14,28 @@
         text-align: center;
     }
     h2:first-letter{
-        color: #be5858;
+        color: #ff0000;
     }
     img {
         margin: 10px;
     }
-    .task1, .task2, .task3, .task4, .task5, .task6 {
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 20px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .row {
+        display: flex;
+        margin:20px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .task1, .task2, .task3, .task4, .task5 {
         background: burlywood;
         border-radius: 15px;
         padding: 1%;
@@ -55,6 +71,7 @@
         color: #3f2197;
         background: #be5858;
     }
+    /* TASK 2 */
     :is(.row)>button{
         margin-right: 5%;
         padding: 1.5% 4% 1.5% 4%;
@@ -64,153 +81,161 @@
         color: #be5858;
         background: #3f2197;
     }
-    ._2_box2, ._2_box3, ._2_box1 {
-        border-color: #29292A;
-        width: 200px;
-        height: 50px;
-        margin-bottom: 2px;
-        border-style: solid;
+    :is(.row)>button:nth-child(2):hover{
+        font-size: 40px;
     }
-    ._2_box1 {
-        background: linear-gradient(90deg, red 33%, white 33%);
-    }
-    ._2_box2 {
-        background: linear-gradient(90deg, orange 66%, white 66%);
-    }
-    ._2_box3 {
-        background: linear-gradient(90deg, green 100%, white 100%);
-    }
-    .col {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        margin: 20px;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    .row {
-        display: flex;
-        margin:20px;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    ._3_BT1, ._3_BT2, ._3_BT3, ._3_BT4, ._3_BT5 {
-        margin: 15px;
-        border-width: 1px;
-        padding-bottom: 5px;
-        padding-top: 5px;
-        width: 150px;
-        border-style: solid;
-        border-radius: 5px;
-    }
-    ._3_BT1 {
-        background: linear-gradient(cyan, white);
-    }
-    ._3_BT2 {
-        background: linear-gradient(lightgreen, green, lightgreen);
-    }
-    ._3_BT3 {
-        background: linear-gradient(white 1%, skyblue 50%, cyan 95%);
-        color: white;
-    }
-    ._3_BT4 {
-        background: linear-gradient(white 20%, dimgray 45%, rgba(19, 19, 19, 0.98) 65%);
-        color: white;
-    }
-    ._3_BT5 {
-        border-style: inset;
-        border-width: 2px;
-        background: linear-gradient(lightgray, gray);
+    :is(.row)>button:nth-child(3):hover{
+        margin-left: 30px;
+        margin-top: 20px;
     }
     :is(div)>p{
         text-align: center;
     }
-    .task4 {
-        background: repeating-linear-gradient(45deg, #be5858, #be5858 20%, #414b8d 20%, #41538d 40%);
-        height: auto;
-        padding: 1%;
+    /* TASK 3*/
+    ul {
+        padding:0;
+        margin:0;
+        list-style-type:none;
+        position: relative;
     }
-    .task4>.container {
-        background: rgba(202, 202, 202, 0.56);
-        padding: 3%;
-        margin-left: 5%;
-        margin-right: 5%;
-        font-size: 20px;
-        margin-bottom: 5%;
-        color: white;
+    ul>li{
+        position: center;
     }
-    .task5 {
-        padding-left: 3%;
-        padding-right: 3%;
-        width: 600px;
-        height: 500px;
-    }
-    ._5_box1 {
-        width: calc(100% - 6%);
-        padding-left: 3%;
-        padding-right: 3%;
-        margin-bottom: 0;
-        margin-top: 0;
+    a {
+        color: #000000;
         border-radius: 15px;
-        background: blueviolet;
-    }
-    ._5_box1_1, ._5_box1_2, ._5_box1_3, ._5_box1_4{
-        border-width: 2px;
-        width: 250px;
-        padding: 1%;
-        margin: 1%;
+        margin-left: 50px;
+        margin-right: 50%;
+        background: #4d9a8e;
+        display: block;
+        padding: 0 0 0 15px;
+        border-width: 1px;
         border-style: solid;
-        border-color: black;
+        font-size: 20px;
+        line-height: 30px;
+        text-decoration: none;
     }
-    ._5_box1_1, ._5_box1_4 {
+    a:hover {
+        background-color: #be4646;
+    }
+    ul ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+    }
+    ul li:hover > ul {
+        display:inherit;
+        position: relative;
+        left: 0;
+    }
 
-        margin: 1%;
-        height: 300px;
-    }
-    ._5_box1_2, ._5_box1_3 {
 
+    .cube
+    {
+        animation: cubeAnim 5s infinite linear;
+        background: rgb(49, 247, 0);
+        border-radius: 15px;
+        width: 100px;
+        height: 100px;
+        position: relative
+    }
+    @media (min-resolution: 100dpi) and (orientation: landscape) {
+        .cube {
+            animation: roundAnim 5s infinite linear;
+            border-radius: 100%;
+            left: 50%;
+            transform-origin: 0 200px;
+        }
+    }
+    @keyframes cubeAnim{
+        0%{
+            left: 0;
+            top: 0;
+        }
+        25%{
+            background: rgb(255, 0, 0);
+            left: calc(100% - 100px);
+            top: 0;
+        }
+        50%{
+            background: rgb(139, 0, 252);
+            left: calc(100% - 100px);
+            top: calc(100% - 100px);
+        }
+        75%{
+            background: rgb(0, 110, 255);
+            left: 0;
+            top: calc(100% - 100px);
+        }
+        100%{
+            background: rgb(49, 247, 0);
+            left: 0;
+            top: 0;
+        }
+    }
+    @keyframes roundAnim{
+        0%{
+            transform: rotate(0deg);
+        }
+        25%{
+            background: rgb(255, 0, 0);
+            transform: rotate(90deg);
+        }
+        50%{
+            background: rgb(139, 0, 252);
+            transform: rotate(180deg);
+        }
+        75%{
+            background: rgb(0, 110, 255);
+            transform: rotate(270deg);
+        }
+        100%{
+            background: rgb(49, 247, 0);
+            transform: rotate(360deg);
+        }
+    }
+    .loopCube {
+        height: 400px;
+    }
+    .container{
+        border-radius: 15px;
+    }
+    .container>div{
+        background-color: #BB9B73FF;
+        border-radius: 15px;
         margin: 1%;
-        height: 60px;
     }
-    ._5_box1_1 {
-        background: #414b8d;
-        border-top-left-radius: 10px;
+    .container>div>p{
+        margin-top: 1%;
+        padding-top: 1%;
+        padding-bottom: 2%;
     }
-    ._5_box1_2 {
-        background: #be5858;
-        border-bottom-left-radius: 10px;
+    img{
+        border-radius: 10px;
+        margin: 1% 1% 1% 1%;
     }
-    ._5_box1_3 {
-        background: aquamarine;
-        border-top-right-radius: 10px;
+    .container>div:nth-child(1){
+        float: left;
     }
-    ._5_box1_4 {
-        background: darkkhaki;
-        border-bottom-right-radius: 10px;
+    .container>div:nth-child(2){
+        display: inline-block;
+        float: right;
     }
-    .task6 {
-        padding: 3%;
-        min-width: 790px;
-        min-height: 790px;
+    .container>div:nth-child(3){
+        display: inline-block;
+        float: right;
     }
-    ._6_box1, ._6_box2 {
-        width: 60%;
-        height: 60%;
-        margin: 5%;
-        padding: 5%;
-        horiz-align: center;
+    .container>div:nth-child(4){
+        float: left;
     }
-    ._6_box1 {
-        margin: 15% auto auto 1%;
-        background: lightgray;
+    .container>div:nth-child(5){
+        display: inline-block;
+        float: right;
     }
-    ._6_box2 {
-        margin: 15% 1% auto auto;
-        background: darkgray;
+    .container>div:nth-child(6){
+        display: inline-block;
+        float: right;
     }
-    .start { width: 600px; height: 600px; margin: 0 auto;}
 </style>
 <body>
 <div class="task1">
@@ -227,6 +252,14 @@
         <li>Девять</li>
         <li>Десять</li>
     </ul>
+    <p>
+        Создайте список из 10 элементов (можно из слов), где каждый элемент будет иметь
+        свой цвет фона, заданный градиентом. Для определения селектора используйте
+        псевдоклассы :first-child, :last-child, :nth-child.
+        Добавьте к определенным элементам (:nth-child) псевдоэлементы before и after.
+        С помощью псевдоэлемента first-letter задайте особый стиль для первых букв
+        элементов
+    </p>
 </div>
 <div class="task2">
     <h2>Задание 2</h2>
@@ -235,77 +268,74 @@
         <button>Кнопка 2</button>
         <button>Кнопка 3</button>
     </div>
+    <p>
+        Создайте 3 кнопки, которые будут изменяться постепенно при наведении (с
+        помощью переходов): одна изменит цвет, другая изменит размеры, третья –
+        положение на странице.
+        При этом каждая из них также должна постепенно менять размер шрифта.
+        Значения для изначального и измененного размеров шрифта должны быть заданы в
+        переменных CSS.
+    </p>
 </div>
 <div class="task3">
     <h2>Задание 3</h2>
-    <button class="_3_BT1">BUTTON</button>
-    <button class="_3_BT2">BUTTON</button>
-    <button class="_3_BT3">BUTTON</button>
-    <button class="_3_BT4">BUTTON</button>
-    <button class="_3_BT5">BUTTON</button>
-    <p>Создайте похожие кнопки с использованием градиента</p>
+    <ul>
+        <li><a href="#">Список</a>
+            <ul>
+                <li><a href="https://www.google.com/">Google</a></li>
+                <li><a href="https://yandex.com/">Yandex</a></li>
+                <li><a href="https://www.vk.com/">VK</a></li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        Сделайте ниспадающее меню (то есть изначально оно скрыто) как изображения
+        ниже.
+    </p>
 </div>
 <div class="task4">
     <h2>Задание 4</h2>
-    <div class="container">
-        <p>
-            Поставьте повторяющийся полосатый градиент на фон страницы.
-            Создайте блок div с прозрачным цветным фоном. Поместите в
-            него какой-либо текст. Сделайте так, чтобы размер блока
-            всегда был по размеру веб-страницы, но отступал от каждого
-            края на небольшое расстояние (для вычисления размера блока
-            используйте calc()).  Текст внутри также должен отступать на
-            какое-либо расстояние от краев. Поменяйте размер и цвет текста.
-        </p>
+    <div class="loopCube">
+        <div class="cube"></div>
     </div>
 </div>
 <div class="task5">
     <h2>Задание 5</h2>
-    <div class="_5_box1">
-        <div class="row">
-            <div class="col">
-                <div class="_5_box1_1">Создайте блоки в том же положении как показано на рисунке (используя свойство </div>
-                <div class="_5_box1_2"></div>
-            </div>
-            <div class="col">
-                <div class="_5_box1_3"></div>
-                <div class="_5_box1_4">float и display). Также необходимо закруглить углы блоков в том же положении.</div>
-            </div>
+    <div class="container">
+        <div class="box1">
+            <img src="styles/bicycle.jpg" width="98%">
+            <p>Велосипед</p>
+        </div>
+        <div class="box2">
+            <img src="styles/bus.jpg" width="98%">
+            <p>Автобус</p>
+        </div>
+        <div class="box3">
+            <img src="styles/sity.jpg" width="98%">
+            <p>Город</p>
+        </div>
+        <div class="box4">
+            <img src="styles/barn.jpg" width="98%">
+            <p>Амбар</p>
+        </div>
+        <div class="box5">
+            <img src="styles/gas_station.jpg" width="98%">
+            <p>Заправка</p>
+        </div>
+        <div class="box6">
+            <img src="styles/stadion.jpg" width="98%">
+            <p>Стадион</p>
         </div>
     </div>
-</div>
-<div class="task6">
-    <h2>Задание 6</h2>
-    <div class="_6_box1 start">
-        <div class="_6_box2">
-            <div class="_6_box1">
-                <div class="_6_box2">
-                    <div class="_6_box1">
-                        <div class="_6_box2">
-                            <div class="_6_box1">
-                                <div class="_6_box2">
-                                    <div class="_6_box1">
-                                        <div class="_6_box2">
-                                            <div class="_6_box1">
-                                                <div class="_6_box2">
-                                                    <div class="_6_box1">
-                                                        <div class="_6_box2">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <p>С помощью позиционирования и других свойств повторить изображение: </p>
+    <p>
+        Создайте страницу, на которой должны отображаться элементы, представляющие
+        собой блоки с изображением и описанием. Эти блоки должны размещаться по три
+        в одной строке, все размеры должны определяться относительно.
+        При уменьшении ширины окна до определенного значения (определите его
+        самостоятельно) должны измениться стили блоков. Теперь нужно чтобы только два
+        блока располагались в одной строке. Также изменяйте и стоили содержимого
+        блоков.
+    </p>
 </div>
 </body>
 </html>
