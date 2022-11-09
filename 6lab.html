@@ -42,9 +42,11 @@
     }
     .task1, .task2, .task3, .task4, .task5 {
         background: burlywood;
+        max-width: 1200px;
+        display: block;
+        margin:10px auto auto auto;
         border-radius: 15px;
         padding: 1%;
-        margin: 10px;
     }
     a {
         text-align: center;
@@ -164,8 +166,8 @@
             }
         });
         $("#task2").click(function(){
-            let names = ['styles/lab6_img1.jpg',
-                'styles/lab6_img2.jpg',
+            let names = ['styles/lab6_img1.jpeg',
+                'styles/lab6_img2.jpeg',
                 'styles/lab6_img3.jpg'];
 
             let arrayImage = [];
@@ -224,7 +226,7 @@
                 arr[i] = prompt('Число: ');
             }
 
-            document.getElementById("Arr").innerHTML = arr;
+            document.getElementById("Arr").innerHTML = "Массив: " + arr;
         });
         $("#task5").click(function(){
             let value = parseInt(getRandomInt(0, 10))
@@ -252,7 +254,7 @@
                 if (a === value) {
                     alert("ПОБЕДА!")
 
-                    document.getElementById("Answers").innerHTML = arr;
+                    document.getElementById("Answers").innerHTML = "Ответы: " + arr;
 
                     break;
                 }

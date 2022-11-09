@@ -34,12 +34,15 @@
     box-sizing: border-box;
     transition: 0.5s ease-in-out;
 }
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
 body{
     margin: 0;
     background-color: #29292A;
     color: #cacaca;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, #clock {
     color: orange;
     font-family:sans-serif;
 }
@@ -113,7 +116,7 @@ td {
     border-bottom-style: solid;
     border-right-style: solid;
 }
-header>h1 {
+header>.row>h1, #clock {
     letter-spacing: 7px;
     padding: 50px 50px 10px 50px;
     font-weight: 50;
@@ -121,6 +124,9 @@ header>h1 {
     line-height: 1.1;
     margin: 0 0 0 0;
     color: orange;
+}
+header>.row>h1 {
+    margin-right: 10%;
 }
 header {
     background-color: #29292A;
