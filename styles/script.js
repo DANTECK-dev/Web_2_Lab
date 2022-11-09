@@ -5,6 +5,7 @@ window.onload = function () {
         document.body.classList.remove('loaded_hiding');
     }, 500);
 }
+const arr = Array('sdf dfs','ebadf','dsf-sf');
 /*$(document).ready(function(){
     $(window).scroll(function(){
         let step = 100;
