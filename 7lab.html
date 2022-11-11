@@ -166,10 +166,9 @@
         возвращает ее;
         fblue – оборачивает переданную в него строку в тег < div > с CSS-классом «blue» и
         возвращает ее;
-        fstr – преобразовывает переданный в него массив строк в одну строку и возвращает
-        ее;
-        flist – преобразовывает переданный в него массив строк в список (можете
-        использовать функцию из предыдущего задания) и возвращает его как строку;
+        fstr – преобразовывает переданный в него массив строк в одну строку, и возвращает ее;
+        flist – преобразовывает переданный в него массив строк в список (можете использовать
+        функцию из предыдущего задания), и возвращает его как строку;
         CSS-класс «red» должен устанавливать цвет заднего фона красный и границу блока
         черную, шириной в 2 пикселя.
         CSS-класс «blue» должен устанавливать цвет заднего фона синий и границу блока
@@ -211,7 +210,6 @@
         функции (для каждой функции получайте строки отдельно). Результат поиска также
         отображайте каким-либо образом.
     </p>
-    <div class="row"><p id="Answers"></p></div>
     <button id="task5">Запуск 5 задания</button>
 </div>
 <div class="task6">
@@ -226,6 +224,8 @@
         во внутреннем цикле вызовете все функции из массива функций. Результаты
         вычислений выводите на страницу.
     </p>
+    <div class="row"><p id="Text_Task6_1"></p></div>
+    <div class="row"><p id="Text_Task6_2"></p></div>
     <button id="task6">Запуск 6 задания</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -263,7 +263,7 @@
         for (let i = 0; i < str.length; i++) {
             //alert(str.length)
             div[i] = ""
-            div[i] += "<div class='task' style='background-color: blue; border-style: solid; border-width: 2px; border-color: red; display:inline-block;'>"
+            div[i] += "<div class='task' style='color: white; background-color: blue; border-style: solid; border-width: 2px; border-color: red; display:inline-block;'>"
             div[i] += "\n\t" + str[i]
             div[i] += "\n</div>"
         }
@@ -272,9 +272,10 @@
 
     function fstr(arr) {
         //alert("str")
-        let str = ""
+        let str = []
+        str[0] = ""
         for (let i = 0; i < arr.length; i++) {
-            str += arr[i]
+            str[0] += arr[i]
         }
         return str
     }
@@ -283,6 +284,7 @@
         //alert("list")
         let str = "<ul id=\"list\">"
         //alert(arr)
+
         for (let i = 0; i < arr.length; i++) {
             str += "\t<li>" + arr[i] + "</li>\n"
         }
@@ -349,7 +351,7 @@
                 arr[i] = b
                 i++
             } while (true);
-            document.getElementById('list').appendChild(arr_to_list_ul_li(arr))
+            document.getElementById('list').innerHTML = arr_to_list_ul_li(arr)
         });
         $("#task4_fred").click(function () {
             let arr = []
@@ -411,13 +413,68 @@
                 arr[i] = b
                 i++
             } while (true);
-            document.getElementById('task4_text').innerHTML = list(blue(arr))
+            if (!b_list)
+                document.getElementById('task4_text').innerHTML = blue(list(arr))
+            else
+                document.getElementById('task4_text').innerHTML = list(blue(arr))
         });
         $("#task5").click(function () {
+            function fgener() {
+                let mas = []
+                let count = 0
 
+                function findmas(value) {
+                    if (mas.indexOf(value) === -1) {
+                        mas.push(value)
+                        console.log("findmas: mas - " + mas + "; count - " + count)
+                        alert("Добавлена строка - " + value + "\nmas - " + mas + "\ncount - " + count)
+                        return false
+                    } else {
+                        count++
+                        console.log("findmas: mas - " + mas + "; count - " + count)
+                        alert("Найдена строка - " + value + "\nmas - " + mas + "\ncount - " + count)
+                        return true
+                    }
+                }
+
+                return findmas
+            }
+
+            let mas = fgener()
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                mas(b)
+            } while (true);
         });
         $("#task6").click(function () {
+            const math = {
+                absolute: (x) => {
+                    return x < 0 ? -x : x
+                },
+                reverse: (x) => {
+                    return -x
+                },
+                sqrt: (x) => {
+                    return x * x
+                }
+            }
+            let arr = []
+            for (let i = 0; i < 10; i++)
+                arr[i] = getRandomInt(-100, 100)
+            document.getElementById('Text_Task6_1').innerHTML = arr
 
+            let arr_1 = []
+            let arr_2 = []
+            let arr_3 = []
+
+            for (let i = 0; i < 10; i++) {
+                arr_1[i] = math.absolute(arr[i])
+                arr_2[i] = math.reverse(arr[i])
+                arr_3[i] = math.sqrt(arr[i])
+            }
+            document.getElementById('Text_Task6_2').innerHTML = "Модуль: " + arr_1 + "<br>Реверс: " + arr_2 + "<br>Квадрат: " + arr_3
         });
     });
 </script>
