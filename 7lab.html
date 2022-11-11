@@ -1,266 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>7 Лаба Web</title>
+    <meta charset="UTF-8">
+    <title>7 Лаба Web</title>
 </head>
 <style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    font-family: "Comic Sans MS", monospace;
-    transition: 1s ease-in-out;
-  }
-  h2 {
-    text-align: center;
-  }
-  h2:first-letter{
-    color: #ff0000;
-  }
-  .task{
-    text-align: center;
-    font-size: 16px;
-    padding: 3px;
-    border-radius: 15px;
-    color: #29292A;
-    background-color: blanchedalmond;
-  }
-  .col {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin: 2px;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .row {
-    display: flex;
-    margin:2px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .task1, .task2, .task3, .task4, .task5 {
-    background: burlywood;
-    max-width: 1200px;
-    display: block;
-    margin:10px auto auto auto;
-    border-radius: 15px;
-    padding: 1%;
-  }
-  a {
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    background-color: blanchedalmond;
-    color: #29292A;
-    border-radius: 15px;
-    padding: 15px;
-  }
-  button {
-    border-width: 1px;
-    border-style: solid;
-    border-color: burlywood;
-    text-align: center;
-    display: block;
-    width: 100%;
-    font-size: 20px;
-    background-color: blanchedalmond;
-    color: #29292A;
-    border-radius: 15px;
-    padding: 15px;
-  }
-  button:hover {
-    background: dimgray;
-    color: blanchedalmond;
-  }
-  img {
-    max-height: 300px;
-    display: block;
-    margin: auto;
-    border-radius: 15px;
-    padding-bottom: 2%;
-    max-width: 100%;
-  }
-  #box {
-    display: block;
-    border-radius: 5px;
-    margin: auto;
-    padding: 1px;
-  }
-  #Square, #Height, #Width{
-    text-align: center;
-    display: block;
-    align-self: center;
-    margin: 0;
-  }
-  #Square {
-    position: relative;
-    top: 50%;
-  }
+    *, *::before, *::after {
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", monospace;
+        transition: 1s ease-in-out;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h2:first-letter {
+        color: #ff0000;
+    }
+
+    ul, li {
+        list-style-type: none;
+    }
+
+    li {
+        background-color: #f6d9ae;
+    }
+
+    #list > li:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(1) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(n+2) {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: blanchedalmond;
+    }
+
+    .task {
+        text-align: center;
+        font-size: 16px;
+        padding: 3px;
+        border-radius: 15px;
+        color: #29292A;
+        background-color: blanchedalmond;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 2px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .row {
+        display: flex;
+        margin: 2px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .task1, .task2, .task3, .task4, .task5, .task6 {
+        background: burlywood;
+        max-width: 1200px;
+        display: block;
+        margin: 10px auto auto auto;
+        border-radius: 15px;
+        padding: 1%;
+    }
+
+    a, #list {
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button {
+        border-width: 1px;
+        border-style: solid;
+        border-color: burlywood;
+        text-align: center;
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button:hover {
+        background: dimgray;
+        color: blanchedalmond;
+    }
+
+    img {
+        max-height: 300px;
+        display: block;
+        margin: auto;
+        border-radius: 15px;
+        padding-bottom: 2%;
+        max-width: 100%;
+    }
+
+    #task4_text {
+        margin-bottom: 15px;
+    }
 </style>
 <body>
 <div class="task1">
-  <h2>Задание 1</h2>
-  <p class="task">Считайте введенное пользователем число. Если число больше 0, то выведите квадрат этого числа на страницу в какой-нибудь элемент, если меньше – выведите в консоль браузера. Если же число равно 0, то выведите сообщение об этом через alert(). Если введено не число, то выведите сообщение об ошибке в консоль браузера.</p>
-  <div class="row"><p id="Text_Task1"></p></div>
-  <button id="task1">Запуск 1 задания</button>
+    <h2>Задание 1</h2>
+    <p class="task">
+        Напишите функцию, вычисляющую факториал числа. На странице пользователь
+        должен вводить данные (prompt), которые передаются в функцию. Проверяйте
+        корректность ввода (введено ли число) и при необходимости выводите
+        соответствующее сообщение об ошибке (console.log). Функция должна возвращать
+        результат вычисления. Этот результат выводите любым способом на страницу.
+    </p>
+    <div class="row"><p id="Text_Task1"></p></div>
+    <button id="task1">Запуск 1 задания</button>
 </div>
 <div class="task2">
-  <h2>Задание 2</h2>
-  <p class="task">Создайте каталог image рядом со страницей со скриптом. Поместите в нее несколько картинок (к примеру, img1.jpg, img2.jpg, img3.jpg и т.д.). Имена картинок храните в массиве. Отобразите на странице картинку из массива под номером, введенным пользователем. Если пользователь ввел не подходящее число, выведите сообщение об этом. Можете сделать вариант с URL-ссылками на картинки.</p>
-  <img name="myImg" height="300" >
-  <button id="task2">Запуск 2 задания</button >
+    <h2>Задание 2</h2>
+    <p class="task">
+        Переделайте функцию первого задания. Теперь это должна быть самовызывающаяся
+        функция.
+    </p>
+    <div class="row"><p id="Text_Task2"></p></div>
+    <button id="task2">Запуск 2 задания</button>
 </div>
 <div class="task3">
-  <h2>Задание 3</h2>
-  <p class="task">Создайте страницу, на которой создается прямоугольный блок div со случайными размерами (в некоторых пределах) и случайным цветом (можно воспользоваться функцией rgb() для этой цели). Для этого понадобится метод Math.random(). В центре div-а запишите его площадь. </p>
-  <div class="row">
-    <div class="col">
-      <div id="box">
-        <p id="Square"></p>
-      </div>
-      <p id="Height"></p>
-    </div>
-    <p id="Width"></p>
-  </div>
-  <button id="task3">Запуск 3 задания</button>
+    <h2>Задание 3</h2>
+    <p class="task">
+        Напишите функцию, которая из массива данных формирует html-список. На странице
+        пользователь должен вводить данные (prompt) в цикле до тех пор, пока не введет
+        пустую строку. После этого в функцию должен передаваться считанный массив
+        данных. Сама функция должна возвращать html-список в виде строки, сформированной
+        из переданного массива. Т.е. нужно обернуть данные в соответствующие теги (< ul >,
+        < li >). Отобразите полученный список на странице (innerHTML или document.write()).
+    </p>
+    <ul id="list">
+        <li>Список</li>
+    </ul>
+    <button id="task3">Запуск 3 задания</button>
 </div>
 <div class="task4">
-  <h2>Задание 4</h2>
-  <p class="task">С помощью prompt и цикла считайте данные пользователя в массив (изначально массив пустой). Количество элементов определите сами. Выводите этот массив на страницу.</p>
-  <div class="row"><p id="Arr"></p></div>
-  <button id="task4">Запуск 4 задания</button>
+    <h2>Задание 4</h2>
+    <p class="task">
+        Напишите следующие функции:
+        fred – оборачивает переданную в него строку в тег < div > с CSS-классом «red» и
+        возвращает ее;
+        fblue – оборачивает переданную в него строку в тег < div > с CSS-классом «blue» и
+        возвращает ее;
+        fstr – преобразовывает переданный в него массив строк в одну строку и возвращает
+        ее;
+        flist – преобразовывает переданный в него массив строк в список (можете
+        использовать функцию из предыдущего задания) и возвращает его как строку;
+        CSS-класс «red» должен устанавливать цвет заднего фона красный и границу блока
+        черную, шириной в 2 пикселя.
+        CSS-класс «blue» должен устанавливать цвет заднего фона синий и границу блока
+        красную, а отображение (display) в inline-block.
+        Создайте две переменные f1 и f2. В них будут записываться ссылки на функции.
+        На странице должно появляется окно с вопросом «Отобразить данные в виде синих
+        блоков?» (confirm). В зависимости от ответа в переменную f1 должна записываться
+        функция fblue или fred.
+        После этого должно появляется окно с вопросом «Отобразить данные в виде списка?».
+        В зависимости от ответа в переменную f2 должна записываться функция fstr или flist.
+        Далее получите массив строк от пользователя (количество – на ваше усмотрение,
+        можно сделать как в предыдущем задании).
+        Теперь необходимо для этого массива вызвать функцию f2. После чего для результата
+        этой функции вызвать функцию f1.
+        Итоговый сформированный элемент необходимо отобразить на странице (innerHTML).
+    </p>
+    <div id="task4_text"></div>
+    <div class="row">
+        <button id="task4_fred">Fred</button>
+        <button id="task4_fblue">Fblue</button>
+        <button id="task4_fstr">Fstr</button>
+        <button id="task4_flist">Flist</button>
+    </div>
 </div>
 <div class="task5">
-  <h2>Задание 5</h2>
-  <p class="task">Генерируется случайное число от 0 до 100. С помощью prompt и цикла пользователь должен угадать число. После каждой попытки ему выдается подсказка «больше» или «меньше» загаданное число, чем введенное им, а также на страницу добавляется элемент (к примеру, блок div) с введенным числом пользователя (для этого может подойти document.write()). Таким образом, когда пользователь угадает число, можно будет на странице увидеть все введенные им варианты.</p>
-  <div class="row"><p id="Answers"></p></div>
-  <button id="task5">Запуск 5 задания</button>
+    <h2>Задание 5</h2>
+    <p class="task">
+        Создайте следующее замыкание:
+        Есть внешняя функция fgener(). Она возвращает в качестве результата вложенную
+        функцию findmas(). Лексическим окружением для нее является изначально пустой
+        массив mas и переменная count, изначально равная 0.
+        Функция findmas() должна производить поиск элемента, переданного ей в качестве
+        аргумента в массиве mas. Если элемент найден, то вернуть true и увеличить count на 1
+        (количество удачных поисков), иначе добавить элемент в массив и вернуть false. В
+        любом случае необходимо вывести mas и count в консоль браузера.
+        С помощью fgener() создайте пару экземпляров функции findmas() и проверьте их
+        работу. Для этого создайте цикл для получения от пользователя строк, которые потом
+        будут передаваться для поиска в массивах в качестве аргумента в сгенерированные
+        функции (для каждой функции получайте строки отдельно). Результат поиска также
+        отображайте каким-либо образом.
+    </p>
+    <div class="row"><p id="Answers"></p></div>
+    <button id="task5">Запуск 5 задания</button>
+</div>
+<div class="task6">
+    <h2>Задание 6</h2>
+    <p class="task">
+        Так как функции можно воспринимать как переменные, то напишите три стрелочные
+        функции и поместите их в массив функций:
+        - Первая вычисляет число по модулю.
+        - Вторая делает число отрицательным.
+        - Третья возвращает квадрат числа.
+        Создайте массив целых чисел. В цикле обойдите элементы этого массива и для каждого
+        во внутреннем цикле вызовете все функции из массива функций. Результаты
+        вычислений выводите на страницу.
+    </p>
+    <button id="task6">Запуск 6 задания</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-  function getRandomInt(min, max)
-  {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-  $(document).ready(function() {
-    $("#task1").click(function(){
-      let b = prompt('Введите число');
-      if(b > 0)
-      {
-        document.getElementById("Text_Task1").innerHTML
-                = "Число больше нуля, квадрат числа = " + b*b;
-      }
-      else if(b < 0)
-      {
-        console.log(b)
-      }
-      else if(parseInt(b) === 0)
-      {
-        alert("Введенное число = 0")
-      }
-      else
-      {
-        console.log("ошибка введено не число")
-      }
-    });
-    $("#task2").click(function(){
-      let names = ['styles/lab6_img1.jpeg',
-        'styles/lab6_img2.jpeg',
-        'styles/lab6_img3.jpg'];
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 
-      let arrayImage = [];
-      for (let j = 0, J = names.length; j < J; j++)
-      {
-        arrayImage [j] = new Image ();
-        arrayImage [j].src = names [j];
-      }
-
-      let N = prompt('Введите номер картинки (1-3)');
-      if(parseInt(N) > 3 || parseInt(N) <= 0)
-      {
-        alert("Нет такой картинки")
-        return
-      }
-      if(N != parseInt(N))
-      {
-        alert("Ошибка введено не число")
-        return
-      }
-
-      document.images["myImg"].src = arrayImage[N-1].src;
-    });
-    $("#task3").click(function(){
-      //getRandomSize = () => Math.floor(Math.random() * 200 + 200) + 'px';
-      let r = Math.floor(getRandomInt(0, 256)),
-              g = Math.floor(getRandomInt(0, 256)),
-              b = Math.floor(getRandomInt(0, 256)),
-              color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
-
-      //console.log("r " + r)
-      //console.log("g " + g)
-      //console.log("b " + b)
-      //console.log("color " + color)
-
-      let box = document.getElementById("box");
-      box.style.width = getRandomInt(window.screen.width * 0.1 , window.screen.width * 0.5) + 'px'
-      box.style.height = getRandomInt(window.screen.height * 0.1 , window.screen.height * 0.5) + 'px'
-
-      let a = parseInt(box.style.width);
-      b = parseInt(box.style.height);
-
-      let s = a * b;
-
-      box.style.background = color;
-
-      document.getElementById("Square").innerHTML = s;
-      document.getElementById("Height").innerHTML = a;
-      document.getElementById("Width").innerHTML = b;
-    });
-    $("#task4").click(function(){
-      let arr = [];
-
-      for(let i = 0; i < 5; i++)
-      {
-        arr[i] = prompt('Число: ');
-      }
-
-      document.getElementById("Arr").innerHTML = "Массив: " + arr;
-    });
-    $("#task5").click(function(){
-      let value = parseInt(getRandomInt(0, 10))
-      let arr = [];
-
-      for(let i = 0; ;i++) {
-        let a = parseInt(prompt('Число: '))
-
-        if(isNaN(a))
-        {
-          i--;
-          continue
+    function arr_to_list_ul_li(arr) {
+        let str = ""
+        for (let i = 0; i < arr.length; i++) {
+            str += "\t<li>" + arr[i] + "</li>\n"
         }
+        return str
+    }
 
-        arr[i] = a;
-
-        if (a < value) {
-          alert("Ваше число МЕНЬШЕ загаданного!")
+    function fred(str) {
+        //alert(str)
+        //alert("red")
+        let div = []
+        for (let i = 0; i < str.length; i++) {
+            //alert(str.length)
+            div[i] = ""
+            div[i] += "<div class='task' style='background-color: red; border-style: solid; border-width: 2px; border-color: black;'>"
+            div[i] += "\n\t" + str[i]
+            div[i] += "\n</div>"
         }
+        return div
+    }
 
-        if (a > value) {
-          alert("Ваше число БОЛЬШЕ загаданного!")
+    function fblue(str) {
+        //alert(str)
+        //alert("blue")
+        let div = []
+        for (let i = 0; i < str.length; i++) {
+            //alert(str.length)
+            div[i] = ""
+            div[i] += "<div class='task' style='background-color: blue; border-style: solid; border-width: 2px; border-color: red; display:inline-block;'>"
+            div[i] += "\n\t" + str[i]
+            div[i] += "\n</div>"
         }
+        return div
+    }
 
-        if (a === value) {
-          alert("ПОБЕДА!")
-
-          document.getElementById("Answers").innerHTML = "Ответы: " + arr;
-
-          break;
+    function fstr(arr) {
+        //alert("str")
+        let str = ""
+        for (let i = 0; i < arr.length; i++) {
+            str += arr[i]
         }
-      }
+        return str
+    }
+
+    function flist(arr) {
+        //alert("list")
+        let str = "<ul id=\"list\">"
+        //alert(arr)
+        for (let i = 0; i < arr.length; i++) {
+            str += "\t<li>" + arr[i] + "</li>\n"
+        }
+        return (str + "\n</ul>")
+    }
+
+    $(document).ready(function () {
+        $("#task1").click(function () {
+            function fact(x) {
+                if (x <= 0) {
+                    return 1;
+                }
+                return x * fact(x - 1);
+            }
+
+            let b = prompt('Факториал числа. Введите число');
+
+            if (b === "") {
+                alert("ошибка пустое поле")
+                console.log("ошибка пусто поле")
+            } else if (b >= 0) {
+                document.getElementById("Text_Task1").innerHTML
+                    = "Факториал числа " + b + " = " + fact(b);
+            } else if (b < 0) {
+                alert("ошибка введено число меньше нуля")
+                console.log("ошибка введено число меньше нуля")
+            } else {
+                alert("ошибка введено не число")
+                console.log("ошибка введено не число")
+            }
+        });
+        $("#task2").click(function () {
+
+            let b = prompt('Факториал числа. Введите число');
+
+            if (b === "") {
+                alert("ошибка пустое поле")
+                console.log("ошибка пусто поле")
+            } else if (b >= 0) {
+                b = parseInt(b)
+                let x = (function (b) {
+                    if (b <= 0) {
+                        return 1;
+                    }
+                    return b * fact(b - 1)
+                }(b))
+                document.getElementById("Text_Task2").innerHTML
+                    = "Факториал числа " + b + " = " + x
+            } else if (b < 0) {
+                alert("ошибка введено число меньше нуля")
+                console.log("ошибка введено число меньше нуля")
+            } else {
+                alert("ошибка введено не число")
+                console.log("ошибка введено не число")
+            }
+        });
+        $("#task3").click(function () {
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            document.getElementById('list').appendChild(arr_to_list_ul_li(arr))
+        });
+        $("#task4_fred").click(function () {
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            //alert(fred(str))
+            document.getElementById('task4_text').innerHTML = fred(arr)
+        });
+        $("#task4_fblue").click(function () {
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            //alert(fred(str))
+            document.getElementById('task4_text').innerHTML = fblue(arr)
+        });
+        $("#task4_fstr").click(function () {
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            document.getElementById('task4_text').innerHTML = `<div class="task">` + fstr(arr) + `</div>`
+        });
+        $("#task4_flist").click(function () {
+            let b_blue = confirm("Отобразить данные в виде синих блоков?")
+            let b_list = confirm("Отобразить данные в виде списка?")
+
+            let blue
+            let list
+
+            if (b_blue) blue = fblue
+            else blue = fred
+
+            if (b_list) list = flist
+            else list = fstr
+
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            document.getElementById('task4_text').innerHTML = list(blue(arr))
+        });
+        $("#task5").click(function () {
+
+        });
+        $("#task6").click(function () {
+
+        });
     });
-  });
 </script>
 </body>
 </html>
