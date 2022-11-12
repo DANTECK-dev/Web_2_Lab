@@ -186,6 +186,7 @@
         Итоговый сформированный элемент необходимо отобразить на странице (innerHTML).
     </p>
     <div id="task4_text"></div>
+    <button id="task4">Запуск 4 задания</button>
     <div class="row">
         <button id="task4_fred">Fred</button>
         <button id="task4_fblue">Fblue</button>
@@ -353,6 +354,33 @@
             } while (true);
             document.getElementById('list').innerHTML = arr_to_list_ul_li(arr)
         });
+        $("#task4").click(function () {
+            let b_blue = confirm("Отобразить данные в виде синих блоков?")
+            let b_list = confirm("Отобразить данные в виде списка?")
+
+            let blue
+            let list
+
+            if (b_blue) blue = fblue
+            else blue = fred
+
+            if (b_list) list = flist
+            else list = fstr
+
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            if (!b_list)
+                document.getElementById('task4_text').innerHTML = blue(list(arr))
+            else
+                document.getElementById('task4_text').innerHTML = list(blue(arr))
+        });
         $("#task4_fred").click(function () {
             let arr = []
             let i = 0
@@ -392,18 +420,6 @@
             document.getElementById('task4_text').innerHTML = `<div class="task">` + fstr(arr) + `</div>`
         });
         $("#task4_flist").click(function () {
-            let b_blue = confirm("Отобразить данные в виде синих блоков?")
-            let b_list = confirm("Отобразить данные в виде списка?")
-
-            let blue
-            let list
-
-            if (b_blue) blue = fblue
-            else blue = fred
-
-            if (b_list) list = flist
-            else list = fstr
-
             let arr = []
             let i = 0
             do {
@@ -413,10 +429,7 @@
                 arr[i] = b
                 i++
             } while (true);
-            if (!b_list)
-                document.getElementById('task4_text').innerHTML = blue(list(arr))
-            else
-                document.getElementById('task4_text').innerHTML = list(blue(arr))
+            document.getElementById('task4_text').innerHTML = flist(arr)
         });
         $("#task5").click(function () {
             function fgener() {
