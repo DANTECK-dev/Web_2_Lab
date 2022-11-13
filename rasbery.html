@@ -72,7 +72,7 @@
       <a name="2"></a>
       <h2>История Raspberry Pi</h2>
       <p>
-        <img id="transparent" src="https://assets.raspberrypi.com/static/d09e9ac338ac137f48124164a36beacb/97e7a/rpi-3-picos.webp" align="right">
+        <img src="https://assets.raspberrypi.com/static/d09e9ac338ac137f48124164a36beacb/97e7a/rpi-3-picos.webp" align="right">
         Вообще <a href="http://www.raspberrypi.org/about">история</a> развития и появления Raspberry Pi не так проста. Первый прототип этого устройства появился в 2006 году. Уже тогда он должен был стоить $25 и предназначался для обучения школьников азам компьютерных премудростей — тому, что в англоязычной литературе принято называть Computer Science (CS), а у нас не совсем корректно зовётся информатикой (о терминологии спорят до сих пор). Основателям проекта — сотрудникам и преподавателям Компьютерной лаборатории Кембриджского университета — не нравился тот факт, что с каждым годом уровень подготовки абитуриентов неуклонно снижался. Если в 90-е годы к ним, как правило, приходили учиться молодые люди, не понаслышке знакомые с программированием, то в 2000-х типичный абитуриент был разве что немного знаком с веб-дизайном.
         <br><br>
         Сожаление разработчиков Raspberry Pi понятно, ведь их молодость пришлась как раз на время появления и расцвета первых по-настоящему домашних «персоналок» Amiga, BBC Micro, Spectrum ZX и Commodore 64. Пользователи этих ПК порой попросту вынуждены были заниматься программированием, если не находили подходящего софта для своих задач. Причём нередко надо было не просто уметь писать код, но и хорошо понимать принципы работы железной составляющей, умело обходить имеющиеся ограничения и различными ухищрениями добиваться максимальной производительности своего творения. Самые продвинутые брали в руки паяльник, ведь периферии поначалу тоже было немного. А для некоторых это и вовсе стало поводом открыть свой «свечной заводик».
@@ -196,90 +196,90 @@
       <p>
         Так как Raspberry Pi умеет загружаться только с SD-карты, то основная ОС будет находиться именно на ней. Нам нужны устройство для чтения карт памяти и собственно карточка объёмом от 4 Гбайт, желательно быстрая. Также нам понадобится внешний жёсткий диск с USB-интерфейсом, где будут храниться ваши файлы. В качестве примера мы рассмотрим подключение HDD с одним разделом NTFS. А для удобства подключения к Сети мы воспользуемся адаптером Wi-Fi. Список совместимых модулей находится <a href="http://elinux.org/RPi_USB_Wi-Fi_Adapters">здесь</a>, а полный список периферийного оборудования, которое можно подключить к Raspberry Pi, имеется <a href="http://elinux.org/RPi_VerifiedPeripherals">тут</a>. Крайне рекомендуется прикупить USB-хаб с отдельным питанием, так как с двумя собственными портами на плате особо не разгуляешься. От него можно запитать и саму плату, и внешний накопитель, и с портами проблем не будет. Про необходимость USB-клавиатуры и подходящего дисплея вы и сами догадались. Для сетевой деятельности понадобится внешний IP-адрес от провайдера (пусть даже динамический) и роутер, который поддерживает привязку IP-адреса к MAC, переадресацию портов для локальных клиентов, UPnP и работу с DDNS. В общем, подойдёт чуть ли не любой домашний маршрутизатор.
         <br><br>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.wdi.600.PNG" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.boot.600.png" align="center">
-      </div>
-      Образ системы можно <a href="http://www.raspberrypi.org/downloads">скачать</a> на официальном сайте. На выбор даются сразу несколько дистрибутивов. Для самостоятельного знакомства с Raspberry Pi проще всего воспользоваться набором New Out of Box Software (NOOBS), в который входит медиацентр XBMC. Не менее прекрасен дистрибутив с удивительным для русского уха названием Pidora. Нам же для минимальной конфигурации достаточно образа Raspbian Wheezy. Запись образа на карточку рекомендуется делать в <a href="http://sourceforge.net/projects/win32diskimager/">программе</a> Win32 Disk Imager. Разобраться с ней нетрудно — главное, не перепутать букву диска и выбрать именно SD-карту, а не какой-нибудь другой накопитель. На запись образа уйдёт минут пять-десять. Вставляем готовую карточку в Raspberry Pi, подключаем клавиатуру и монитор, подцепляем питание к порту micro-USB. Мини-ПК не имеет отдельной кнопки включения, поэтому при наличии питания сразу же пытается загрузиться с SD-карты. На загрузку уходит менее минуты. По умолчанию логин pi, а пароль raspberrypi.
-      <br><br>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_1.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_2.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_3.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_4.200.png" align="center">
-      </div>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_5.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_6.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_7.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_8.200.png" align="center">
-      </div>
-      При первом включении сразу же запускается небольшая утилита, которая поможет настроить базовые параметры ОС. Вот в ней прямо по пунктам и пойдём. Во-первых, надо «развернуть» корневую ФС на всю SD-карту — Expand Filesystem. Во-вторых, поменять пароль на вход в ОС (Change User Password) — тут надо будет дважды ввести новый пароль. В третьем пункте нам предлагают включить загрузку рабочего стола, но для нас эта опция не обязательна. Четвёртый пункт по большому счёту тоже опционален — здесь настраивается локализация системы. Здесь надо обновить имеющиеся локали (Change Locale), добавив к английской русскую ru_RU.UTF8 и выбрав её же в качестве основной. Со сменой часового пояса (Change Timezone) вы и сами справитесь. В третьем подпункте меняются раскладки клавиатуры и способ переключения между ними. Тут надо выбрать вашу модель клавиатуры, а если в списке её нет, то указать Generic 105-key. Далее придётся выбрать русскую раскладку (Other → Russian → Russian) и указать сочетание клавиш для переключения языков ввода (мы выбрали Alt+Shift).
-      <br><br>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_9.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_10.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_11.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_12.200.png" align="center">
-      </div>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_13.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_14.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_15.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_16.200.png" align="center">
-      </div>
-      От настройки дополнительных клавиш лучше отказаться, выбрав везде первый пункт в списках (см. скриншоты). В самом конце мастер настройки предложит задействовать сочетания Ctrl+Alt+Backspace для быстрого завершения работы графического сервера. Если вы решили включить русскую локализацию, то ниже будут даны дополнительные инструкции. А пока возвращаемся к базовым настройкам и переходим к пункту Overclock, где можно разогнать процессор Raspberry Pi. Этот этап совсем необязателен, однако поднятие частоты до 800 МГц должно быть безболезненным для системы, хотя нас и предупреждают о возможных поломках. Дальнейший разгон не очень рекомендуется, да и заставляет задуматься о дополнительном охлаждении процессора.
-      <br><br>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_17.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_18.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_19.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_20.200.png" align="center">
-      </div>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_21.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_22.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_23.200.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_24.200.png" align="center">
-      </div>
-      Видеопамять выделяется из основной памяти, поэтому, если вы не используете графическую оболочку, в разделе Advanced Options → Memory Split можно уменьшить объём выделяемой видеопамяти. В том же разделе обязательно надо включить SSH-сервер, к которому мы будем в дальнейшем подключаться, — Advanced Options → SSH → Enable. Всё, теперь можно выходить из утилиты, выбрав кнопку Finish. От перезагрузки следует отказаться, так как нам надо настроить кое-что ещё. Если вы используете проводное подключение к Сети, то этот абзац можно пропустить — Raspberry Pi уже должен был получить настройки по DHCP от роутера и иметь доступ в Интернет. Теперь к нашему мини-компьютеру пора подключить внешний жёсткий диск и адаптер Wi-Fi. Первым делом проверяем наличие обоих в системе, а потом прописываем настройки Wi-Fi.
-      <br><br>
-      <i class="mark">lsusb sudo nano /etc/network/interfaces</i>
-      <br><br>
-      В файле /etc/network/interfaces надо внести следующие изменения для интерфейса wlan0:
-      <br><br>
-      <i class="mark">allow-hotplug wlan0 auto wlan0 iface wlan0 inet dhcp wpa-ssid "имя_сети" wpa-psk "пароль_сети"</i>
-      <br><br>
-      <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.wifi.600.PNG" align="right">
-      Предполагается, что подключаться вы будете только к одной домашней беспроводной сети. По-хорошему, прописывать параметры SSID надо не здесь, но для нашего случая это излишне. В конце файла добавьте пустую строку. После внесения изменений и сохранения файла (Ctrl+X, Y, Enter) надо перезапустить сетевые службы и проверить подключение к Сети, например пропинговав любой сайт или выполнив команду ifconfig. Теперь можно обновить список ПО, установить свежие апдейты и инсталлировать необходимые пакеты. Fuse с ntfs-3g нужны для работы с NTFS, а console-cyrillic — для русификации консоли. При установке последнего пакета в мастере настройки достаточно выбрать сочетание клавиш для переключения раскладки (Alt+Shift, см. выше), а остальные параметры оставить по умолчанию.
-      <br><br>
-      <i class="mark">sudo service networking restart sudo apt-get update sudo apt-get upgrade sudo apt-get install fuse ntfs-3g console-cyrillic</i>
-      <br><br>
-      Теперь займёмся подключением жёсткого диска. Для начала в каталоге /media создадим папку data, куда будет монтироваться раздел с вашими файлами. Потом меняем владельца этой папки и ищем уникальный идентификатор UUID нужного нам раздела.
-      <br><br>
-      <i class="mark">sudo mkdir /media/data sudo chown pi /media/data sudo blkid sudo nano /etc/fstab</i>
-      <br><br>
-      В /etc/fstab необходимо добавить вот такую строчку, подставив UUID вашего раздела и не забыв про пустую строку в конце файла:
-      <br><br>
-      <i class="mark">UUID=XXXXXXXXXXXXXXXX /media/data ntfs-3g users,defaults 0 0</i>
-      <br><br>
-      <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.hdd.600.PNG" align="left">
-      Сохраняем файлик (Ctrl+X, Y, Enter), монтируем раздел и на всякий случай просматриваем список каталогов в корневой папке. Если вы хотите подключить сразу несколько разделов на внешнем накопителе, то для каждого из них придётся повторить всю процедуру от создания папки в /media до прописывания параметров в /etc/fstab. Ну вроде бы ничего не забыли. Пора перезагрузить Raspberry Pi и отключить клавиатуру с монитором, которые нам больше не понадобятся, так как к устройству мы будем подключаться по SSH.
-      <br><br>
-      <i class="mark">sudo mount /media/data ls /media/data sudo shutdown -r now</i>
-      <br><br>
-      В настройках роутера надо присвоить нашему Raspberry Pi статический IP-адрес и прописать параметры какого-нибудь провайдера DDNS. Подробнее процесс регистрации на примере DynDNS рассматривался в этой статье. В качестве SSH-клиента мы будем использовать старый добрый PuTTY. В строке адреса указываем pi@IP_адрес_Raspberry_Pi, а на вкладке Windows → Translation выбираем кодировку UTF-8. Профиль подключения в разделе Session сохраняем для удобства под любым именем и нажимаем Open. При первом подключении на запрос о добавлении ключей отвечаем положительно. Всё, на этом базовая настройка завершена, и на Raspberry Pi можно устанавливать любой подходящий софт.
-      <br><br>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_1.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_2.png" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_3.png" align="center">
-      </div>
-      <div class="inline">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.pty_1.265.PNG" align="center">
-        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.pty_2.265.PNG" align="center">
-      </div>
-      А что именно? В «Мастерской» мы уже рассматривали создание собственного <a href="https://3dnews.ru/workshop/608198">VPN-сервера</a> для защиты трафика и обхода ограничений провайдеров, установку личного «облака» <a href="https://3dnews.ru/workshop/618868">OwnCloud</a>, развёртывание <a href="https://3dnews.ru/workshop/625306">реаниматора</a> с загрузкой по сети, использование одного из <a href="https://3dnews.ru/workshop/634726">аналогов</a> Dropbox и даже поднятие <a href="https://3dnews.ru/workshop/630629">сервера</a> для безопасного обмена файлами. Всё это и многое другое не так уж сложно сделать с помощью Raspberry Pi, а ведь мы сейчас рассматриваем его только в качестве экономичного микрокомпьютера с Linux на борту. Что уж говорить про множество других, более «железных» проектов, которые используют все аппаратные возможности этой замечательной платформы. Впрочем, не будем отвлекаться от поставленной задачи.
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.wdi.600.PNG" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.boot.600.png" align="center">
+        </div>
+        Образ системы можно <a href="http://www.raspberrypi.org/downloads">скачать</a> на официальном сайте. На выбор даются сразу несколько дистрибутивов. Для самостоятельного знакомства с Raspberry Pi проще всего воспользоваться набором New Out of Box Software (NOOBS), в который входит медиацентр XBMC. Не менее прекрасен дистрибутив с удивительным для русского уха названием Pidora. Нам же для минимальной конфигурации достаточно образа Raspbian Wheezy. Запись образа на карточку рекомендуется делать в <a href="http://sourceforge.net/projects/win32diskimager/">программе</a> Win32 Disk Imager. Разобраться с ней нетрудно — главное, не перепутать букву диска и выбрать именно SD-карту, а не какой-нибудь другой накопитель. На запись образа уйдёт минут пять-десять. Вставляем готовую карточку в Raspberry Pi, подключаем клавиатуру и монитор, подцепляем питание к порту micro-USB. Мини-ПК не имеет отдельной кнопки включения, поэтому при наличии питания сразу же пытается загрузиться с SD-карты. На загрузку уходит менее минуты. По умолчанию логин pi, а пароль raspberrypi.
+        <br><br>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_1.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_2.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_3.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_4.200.png" align="center">
+        </div>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_5.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_6.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_7.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_8.200.png" align="center">
+        </div>
+        При первом включении сразу же запускается небольшая утилита, которая поможет настроить базовые параметры ОС. Вот в ней прямо по пунктам и пойдём. Во-первых, надо «развернуть» корневую ФС на всю SD-карту — Expand Filesystem. Во-вторых, поменять пароль на вход в ОС (Change User Password) — тут надо будет дважды ввести новый пароль. В третьем пункте нам предлагают включить загрузку рабочего стола, но для нас эта опция не обязательна. Четвёртый пункт по большому счёту тоже опционален — здесь настраивается локализация системы. Здесь надо обновить имеющиеся локали (Change Locale), добавив к английской русскую ru_RU.UTF8 и выбрав её же в качестве основной. Со сменой часового пояса (Change Timezone) вы и сами справитесь. В третьем подпункте меняются раскладки клавиатуры и способ переключения между ними. Тут надо выбрать вашу модель клавиатуры, а если в списке её нет, то указать Generic 105-key. Далее придётся выбрать русскую раскладку (Other → Russian → Russian) и указать сочетание клавиш для переключения языков ввода (мы выбрали Alt+Shift).
+        <br><br>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_9.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_10.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_11.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_12.200.png" align="center">
+        </div>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_13.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_14.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_15.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_16.200.png" align="center">
+        </div>
+        От настройки дополнительных клавиш лучше отказаться, выбрав везде первый пункт в списках (см. скриншоты). В самом конце мастер настройки предложит задействовать сочетания Ctrl+Alt+Backspace для быстрого завершения работы графического сервера. Если вы решили включить русскую локализацию, то ниже будут даны дополнительные инструкции. А пока возвращаемся к базовым настройкам и переходим к пункту Overclock, где можно разогнать процессор Raspberry Pi. Этот этап совсем необязателен, однако поднятие частоты до 800 МГц должно быть безболезненным для системы, хотя нас и предупреждают о возможных поломках. Дальнейший разгон не очень рекомендуется, да и заставляет задуматься о дополнительном охлаждении процессора.
+        <br><br>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_17.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_18.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_19.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_20.200.png" align="center">
+        </div>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_21.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_22.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_23.200.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.in_24.200.png" align="center">
+        </div>
+        Видеопамять выделяется из основной памяти, поэтому, если вы не используете графическую оболочку, в разделе Advanced Options → Memory Split можно уменьшить объём выделяемой видеопамяти. В том же разделе обязательно надо включить SSH-сервер, к которому мы будем в дальнейшем подключаться, — Advanced Options → SSH → Enable. Всё, теперь можно выходить из утилиты, выбрав кнопку Finish. От перезагрузки следует отказаться, так как нам надо настроить кое-что ещё. Если вы используете проводное подключение к Сети, то этот абзац можно пропустить — Raspberry Pi уже должен был получить настройки по DHCP от роутера и иметь доступ в Интернет. Теперь к нашему мини-компьютеру пора подключить внешний жёсткий диск и адаптер Wi-Fi. Первым делом проверяем наличие обоих в системе, а потом прописываем настройки Wi-Fi.
+        <br><br>
+        <i class="mark">lsusb sudo nano /etc/network/interfaces</i>
+        <br><br>
+        В файле /etc/network/interfaces надо внести следующие изменения для интерфейса wlan0:
+        <br><br>
+        <i class="mark">allow-hotplug wlan0 auto wlan0 iface wlan0 inet dhcp wpa-ssid "имя_сети" wpa-psk "пароль_сети"</i>
+        <br><br>
+        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.wifi.600.PNG" align="right">
+        Предполагается, что подключаться вы будете только к одной домашней беспроводной сети. По-хорошему, прописывать параметры SSID надо не здесь, но для нашего случая это излишне. В конце файла добавьте пустую строку. После внесения изменений и сохранения файла (Ctrl+X, Y, Enter) надо перезапустить сетевые службы и проверить подключение к Сети, например пропинговав любой сайт или выполнив команду ifconfig. Теперь можно обновить список ПО, установить свежие апдейты и инсталлировать необходимые пакеты. Fuse с ntfs-3g нужны для работы с NTFS, а console-cyrillic — для русификации консоли. При установке последнего пакета в мастере настройки достаточно выбрать сочетание клавиш для переключения раскладки (Alt+Shift, см. выше), а остальные параметры оставить по умолчанию.
+        <br><br>
+        <i class="mark">sudo service networking restart sudo apt-get update sudo apt-get upgrade sudo apt-get install fuse ntfs-3g console-cyrillic</i>
+        <br><br>
+        Теперь займёмся подключением жёсткого диска. Для начала в каталоге /media создадим папку data, куда будет монтироваться раздел с вашими файлами. Потом меняем владельца этой папки и ищем уникальный идентификатор UUID нужного нам раздела.
+        <br><br>
+        <i class="mark">sudo mkdir /media/data sudo chown pi /media/data sudo blkid sudo nano /etc/fstab</i>
+        <br><br>
+        В /etc/fstab необходимо добавить вот такую строчку, подставив UUID вашего раздела и не забыв про пустую строку в конце файла:
+        <br><br>
+        <i class="mark">UUID=XXXXXXXXXXXXXXXX /media/data ntfs-3g users,defaults 0 0</i>
+        <br><br>
+        <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.hdd.600.PNG" align="left">
+        Сохраняем файлик (Ctrl+X, Y, Enter), монтируем раздел и на всякий случай просматриваем список каталогов в корневой папке. Если вы хотите подключить сразу несколько разделов на внешнем накопителе, то для каждого из них придётся повторить всю процедуру от создания папки в /media до прописывания параметров в /etc/fstab. Ну вроде бы ничего не забыли. Пора перезагрузить Raspberry Pi и отключить клавиатуру с монитором, которые нам больше не понадобятся, так как к устройству мы будем подключаться по SSH.
+        <br><br>
+        <i class="mark">sudo mount /media/data ls /media/data sudo shutdown -r now</i>
+        <br><br>
+        В настройках роутера надо присвоить нашему Raspberry Pi статический IP-адрес и прописать параметры какого-нибудь провайдера DDNS. Подробнее процесс регистрации на примере DynDNS рассматривался в этой статье. В качестве SSH-клиента мы будем использовать старый добрый PuTTY. В строке адреса указываем pi@IP_адрес_Raspberry_Pi, а на вкладке Windows → Translation выбираем кодировку UTF-8. Профиль подключения в разделе Session сохраняем для удобства под любым именем и нажимаем Open. При первом подключении на запрос о добавлении ключей отвечаем положительно. Всё, на этом базовая настройка завершена, и на Raspberry Pi можно устанавливать любой подходящий софт.
+        <br><br>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_1.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_2.png" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/1rt_3.png" align="center">
+        </div>
+        <div class="inline">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.pty_1.265.PNG" align="center">
+          <img src="https://3dnews.ru/assets/external/illustrations/2013/08/07/658701/sm.pty_2.265.PNG" align="center">
+        </div>
+        А что именно? В «Мастерской» мы уже рассматривали создание собственного <a href="https://3dnews.ru/workshop/608198">VPN-сервера</a> для защиты трафика и обхода ограничений провайдеров, установку личного «облака» <a href="https://3dnews.ru/workshop/618868">OwnCloud</a>, развёртывание <a href="https://3dnews.ru/workshop/625306">реаниматора</a> с загрузкой по сети, использование одного из <a href="https://3dnews.ru/workshop/634726">аналогов</a> Dropbox и даже поднятие <a href="https://3dnews.ru/workshop/630629">сервера</a> для безопасного обмена файлами. Всё это и многое другое не так уж сложно сделать с помощью Raspberry Pi, а ведь мы сейчас рассматриваем его только в качестве экономичного микрокомпьютера с Linux на борту. Что уж говорить про множество других, более «железных» проектов, которые используют все аппаратные возможности этой замечательной платформы. Впрочем, не будем отвлекаться от поставленной задачи.
       </p>
       <a name="5"></a>
       <h2>Настройка BitTorrent Sync</h2>

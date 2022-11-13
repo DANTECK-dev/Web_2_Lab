@@ -218,7 +218,6 @@ img, video, iframe{
 #warning {
     color: red;
     border-radius: 8px;
-    background: repeating-linear-gradient(135deg, rgba(194, 81, 81, 0.37), rgba(194, 81, 81, 0.37) 3px, rgba(65, 75, 141, 0) 3px, rgba(65, 83, 141, 0) 6px);
     font-size: 24px;
 }
 iframe {
