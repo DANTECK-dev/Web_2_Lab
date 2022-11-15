@@ -1,4 +1,9 @@
 window.onload = function () {
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    const rand_link = ["arduino.html", "raspberry.html", "index.html"][getRandomInt(0,3)]
+    document.getElementById("rand_link").innerHTML = `<a href=` + rand_link + `>Забыли пароль?</a>`
     function changeColor(day) {
         if (day) {
             console.log("сейчас день")
@@ -59,7 +64,28 @@ window.onload = function () {
     clock.innerHTML = "Текущее время: " + now.toLocaleTimeString().split(':')[0] + ":" + now.toLocaleTimeString().split(':')[1];
     let hour = parseInt(now.toLocaleTimeString().split(':')[0])
     let day = hour > 7 && hour < 21;
-    changeColor(day)
+    day = changeColor(day)
+    if (!day) {
+        clock = document.getElementById("clock").innerHTML =
+            + String(now.getDate()).padStart(2, '0') + "/"
+            + String(now.getMonth() + 1).padStart(2, '0') + "/"
+            + now.getFullYear()
+            + " Текущее время: "
+            + now.toLocaleTimeString().split(':')[0]
+            + ":"
+            + now.toLocaleTimeString().split(':')[1]
+            + " Включена дневная тема";
+    } else {
+        clock = document.getElementById("clock").innerHTML =
+            + String(now.getDate()).padStart(2, '0') + "/"
+            + String(now.getMonth() + 1).padStart(2, '0') + "/"
+            + now.getFullYear()
+            + " Текущее время: "
+            + now.toLocaleTimeString().split(':')[0]
+            + ":"
+            + now.toLocaleTimeString().split(':')[1]
+            + " Включена ночная тема";
+    }
     window.setInterval(function () {
         now = new Date();
         hour = parseInt(now.toLocaleTimeString().split(':')[0])
@@ -93,5 +119,5 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
-    }, 1000 * 60);
+    }, 1000 );
 }

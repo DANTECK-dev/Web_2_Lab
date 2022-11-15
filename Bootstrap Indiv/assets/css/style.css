@@ -195,7 +195,7 @@ button {
 
 .width {
     border-radius: 4px;
-    background-color: #313031;
+    background-color: #fdfdfd;
 }
 
 #warning {
@@ -318,4 +318,11 @@ tr {
 td {
     border: 0;
     padding: 5px 100px 5px 5px;
+}
+tr>a:hover::before,
+tr>a:hover::after,
+td>a:hover::before,
+td>a:hover::after
+{
+    content: "";
 }
