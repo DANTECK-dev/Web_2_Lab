@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8 Лаба Web</title>
+</head>
+<style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", monospace;
+        transition: 1s ease-in-out;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h2:first-letter {
+        color: #ff0000;
+    }
+
+    ul, li {
+        list-style-type: none;
+    }
+
+    li {
+        background-color: #f6d9ae;
+    }
+
+    #list > li:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(1) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(n+2) {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: blanchedalmond;
+    }
+
+    .task {
+        text-align: center;
+        font-size: 16px;
+        padding: 3px;
+        border-radius: 15px;
+        color: #29292A;
+        background-color: blanchedalmond;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 2px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .row {
+        display: flex;
+        margin: 2px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .task1, .task2, .task3, .task4, .task5, .task6 {
+        background: burlywood;
+        max-width: 1200px;
+        display: block;
+        margin: 10px auto auto auto;
+        border-radius: 15px;
+        padding: 1%;
+    }
+
+    a, #list {
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button {
+        border-width: 1px;
+        border-style: solid;
+        border-color: burlywood;
+        text-align: center;
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button:hover {
+        background: dimgray;
+        color: blanchedalmond;
+    }
+
+    img {
+        max-height: 300px;
+        display: block;
+        margin: auto;
+        border-radius: 15px;
+        padding-bottom: 2%;
+        max-width: 100%;
+    }
+
+    #task4_text {
+        margin-bottom: 15px;
+    }
+
+    table {
+        border-collapse: collapse;
+        font-family: sans-serif;
+        border: 1px solid grey;
+        width: 80%;
+    }
+
+    tr, td {
+        border: 1px solid grey;
+        padding: 5px 5px 5px 5px;
+    }
+</style>
+<body>
+<div class="task1">
+    <h2>Задание 1</h2>
+    <p class="task">
+        Создайте двухмерный ассоциативный массив (объект). У него должны быть два
+        ключа – 'ru' и 'en'. Пусть первый ключ содержит элемент, являющийся массивом
+        названий дней недели на русском языке, а второй – на английском.
+        На странице должно появляется окно с вопросом «Отобразить список дней недели на
+        английском?» (confirm). Если пользователь подтвердит, то отобразить на странице
+        список из элементов массива под ключом 'en', иначе – под 'ru'.
+    </p>
+    <div class="row"><p id="Text_Task1"></p></div>
+    <button id="task1">Запуск 1 задания</button>
+</div>
+<div class="task2">
+    <h2>Задание 2</h2>
+    <p class="task">
+        Создайте конструктор для формирования объектов данных человека с полями «ФИО»,
+        «возраст» и «рост» и методом отображения данных в строке. Этот метод должен
+        формировать html-код, где все данные представлены в таблице. На странице считайте
+        данные нескольких объектов (prompt, также можно воспользоваться функцией split для
+        разделения строки). Для создания объектов используйте конструктор. Отобразите
+        данные на странице, воспользовавшись соответствующем методом каждого объекта.
+        Заранее пропишите стиль таблицы.
+    </p>
+    <div class="row" id="Text_Task2"></div>
+    <button id="task2">Запуск 2 задания</button>
+</div>
+<div class="task3">
+    <h2>Задание 3</h2>
+    <p class="task">
+        Создайте базовый класс Person с полями «ФИО» и «возраст», а также двумя методами.
+        Первый метод getFieldStr – отображение данных пользователя в виде html-кода, где
+        каждое поле в отдельном абзаце < p > последовательно друг за другом. Возвращает
+        полученную строку.
+        Второй метод getDataStr – вызывает getFieldStr и полученную от него строку
+        размещает в блоке < div >. Возвращает строку с соответствующим html-кодом.
+        Создайте дочерний класс Employee, наследник Person, добавляющий поле «должность»
+        и переопределяющий метод отображения данных пользователя getDataStr. Этот метод
+        должен использовать метод базового класса getFieldStr, но добавлять к результату
+        абзац < p > с полем «должность» и также размещать результат в блоке < div >.
+        Возвращает строку с соответствующим html-кодом.
+        Любым способом сформируйте массив из объектов классов Person и Employee,
+        заполненных данными. С помощью цикла и вызова функции getDataStr у объектов
+        отобразите полученные объекты на странице.
+    </p>
+    <ul id="list">
+        <li>Список</li>
+    </ul>
+    <button id="task3">Запуск 3 задания</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    $(document).ready(function () {
+        $("#task1").click(function () {
+            let b = confirm("Отобразить список дней недели на английском?");
+
+            let lang = {
+                "ru": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+                "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+            }
+
+            if (b)
+                document.getElementById("Text_Task1").innerHTML = lang["en"];
+            else
+                document.getElementById("Text_Task1").innerHTML = lang["ru"];
+        });
+        $("#task2").click(function () {
+
+            class Person {
+                name;
+                age;
+                height;
+
+                constructor(name, age, height) {
+                    this.name = name;
+                    this.age = age;
+                    this.height = height;
+                }
+
+                static display(persons) {
+                    let str = "<table><tr><td>Имя</td><td>Возраст</td><td>Высота</td></tr>"
+                    for (let i = 0; i < persons.length; i++) {
+                        console.log("<td>" + persons[i].name + "</td><td>" + persons[i].age
+                            + "</td><td>" + persons[i].height + "</td>")
+                        str += "<tr><td>" + persons[i].name + "</td><td>" + persons[i].age
+                            + "</td><td>" + persons[i].height + "</td></tr>"
+                    }
+                    return (str + "</table>")
+                }
+
+            }
+
+            let arr = []
+            let index = 0
+            Person.display(arr)
+
+            while (true) {
+                let name = prompt("Введите ФИО")
+                if (name === "") break;
+
+                let age = prompt("Введите возраст")
+                if (age === "") break;
+
+                let height = prompt("Введите рост")
+                if (height === "") break;
+
+                arr[index] = new Person(name, age, height)
+                index++
+            }
+
+            document.getElementById("Text_Task2").innerHTML = Person.display(arr);
+        });
+        $("#task3").click(function () {
+            let arr = []
+            let i = 0
+            do {
+                let b = prompt("Введите строку")
+                if (b === "")
+                    break
+                arr[i] = b
+                i++
+            } while (true);
+            document.getElementById('list').innerHTML = arr_to_list_ul_li(arr)
+        });
+    });
+</script>
+</body>
+</html>

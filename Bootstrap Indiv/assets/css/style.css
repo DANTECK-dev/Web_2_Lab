@@ -1,3 +1,35 @@
+/*Прелоадер*/
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: #101010;
+    z-index: 1001;
+}
+
+.preloader__image {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    background: url('preloader.gif') no-repeat 50% 50%;
+}
+
+.loaded_hiding .preloader {
+    transition: 0.8s opacity;
+    opacity: 0;
+}
+
+.loaded .preloader {
+    display: none;
+}
+
+
+
 *, *::before, *::after {
     transition: 0.8s ease-in-out;
 }
