@@ -125,6 +125,7 @@
         border-collapse: collapse;
         font-family: sans-serif;
         border: 1px solid grey;
+        margin: 10px;
         width: 80%;
     }
 
@@ -179,15 +180,70 @@
         заполненных данными. С помощью цикла и вызова функции getDataStr у объектов
         отобразите полученные объекты на странице.
     </p>
-    <ul id="list">
-        <li>Список</li>
-    </ul>
+    <div class="row" id="Text_Task3"></div>
     <button id="task3">Запуск 3 задания</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+    }
+    function getFieldStr(arr) {
+        let str = ""
+        for (let i = 0; i < arr.lenght; i++) {
+            str += "<p>" + arr[i] + "</p>"
+        }
+        return str
+    }
+    function getDataStr(arr) {
+        let str = getFieldStr(arr)
+        return ("<div>" + str + "</div>")
+    }
+
+    class Person {
+        name
+        age
+        height
+
+        constructor(name, age, height) {
+            this.name = name
+            this.age = age
+            this.height = height
+        }
+
+        static display(persons) {
+            let str = "<table><tr><td>Имя</td><td>Возраст</td><td>Высота</td></tr>"
+            for (let i = 0; i < persons.length; i++) {
+                console.log("<td>" + persons[i].name + "</td><td>" + persons[i].age
+                    + "</td><td>" + persons[i].height + "</td>")
+                str += "<tr><td>" + persons[i].name + "</td><td>" + persons[i].age
+                    + "</td><td>" + persons[i].height + "</td></tr>"
+            }
+            return (str + "</table>")
+        }
+    }
+
+
+    class Employee extends Person {
+        post
+
+        constructor(name, age, height, post) {
+            super(name, age, height)
+            this.post = post
+        }
+
+        static display(persons) {
+            let str = "<table><tr><td>Имя</td><td>Возраст</td><td>Высота</td><td>Должность</td></tr>"
+            for (let i = 0; i < persons.length; i++) {
+                str += "<tr>"
+                        + "<td>" + persons[i].name + "</td>"
+                        + "<td>" + persons[i].age + "</td>"
+                        + "<td>" + persons[i].height + "</td>"
+                        + "<td>" + persons[i].post + "</td>"
+                    + "</tr>"
+            }
+            return (str + "</table>")
+        }
     }
 
     $(document).ready(function () {
@@ -205,31 +261,6 @@
                 document.getElementById("Text_Task1").innerHTML = lang["ru"];
         });
         $("#task2").click(function () {
-
-            class Person {
-                name;
-                age;
-                height;
-
-                constructor(name, age, height) {
-                    this.name = name;
-                    this.age = age;
-                    this.height = height;
-                }
-
-                static display(persons) {
-                    let str = "<table><tr><td>Имя</td><td>Возраст</td><td>Высота</td></tr>"
-                    for (let i = 0; i < persons.length; i++) {
-                        console.log("<td>" + persons[i].name + "</td><td>" + persons[i].age
-                            + "</td><td>" + persons[i].height + "</td>")
-                        str += "<tr><td>" + persons[i].name + "</td><td>" + persons[i].age
-                            + "</td><td>" + persons[i].height + "</td></tr>"
-                    }
-                    return (str + "</table>")
-                }
-
-            }
-
             let arr = []
             let index = 0
             Person.display(arr)
@@ -252,15 +283,26 @@
         });
         $("#task3").click(function () {
             let arr = []
-            let i = 0
-            do {
-                let b = prompt("Введите строку")
-                if (b === "")
-                    break
-                arr[i] = b
-                i++
-            } while (true);
-            document.getElementById('list').innerHTML = arr_to_list_ul_li(arr)
+            let index = 0
+
+            while (true) {
+                let name = prompt("Введите ФИО")
+                if (name === "") break;
+
+                let age = prompt("Введите возраст")
+                if (age === "") break;
+
+                let height = prompt("Введите рост")
+                if (height === "") break;
+
+                let post = prompt("Введите должность")
+                if (post === "") break;
+
+                arr[index] = new Employee(name, age, height, post)
+                index++
+            }
+
+            document.getElementById("Text_Task3").innerHTML = Employee.display(arr);
         });
     });
 </script>
