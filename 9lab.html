@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>8 Лаба Web</title>
+    <title>9 Лаба Web</title>
 </head>
 <style>
     *, *::before, *::after {
@@ -138,9 +138,12 @@
         display: inline;
         margin: 1%;
     }
-    #Text_Task3{
-        flex-wrap: wrap;
+
+    .box{
+        min-width: 200px;
+        min-height: 200px;
     }
+
 </style>
 <body>
 <div class="task1">
@@ -153,7 +156,7 @@
         английском?» (confirm). Если пользователь подтвердит, то отобразить на странице
         список из элементов массива под ключом 'en', иначе – под 'ru'.
     </p>
-    <div class="row"><p id="Text_Task1"></p></div>
+    <div class="row" id="Text_Task1"></div>
     <button id="task1">Запуск 1 задания</button>
 </div>
 <div class="task2">
@@ -193,91 +196,22 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
-    class User {
-        name
-        age
-        height
-
-        constructor(name, age, height) {
-            this.name = name
-            this.age = age
-            this.height = height
-        }
-
-        static display(arr) {
-            let str = `<table><tr><td>Имя</td><td>Возраст</td><td>Высота</td></tr>`
-            let counter = arr.length
-            for (let i = 0; i < counter; i++) {
-                let user = arr.pop()
-                str += `<tr>`
-                        + `<td>` + user.name + `</td>`
-                        + `<td>` + user.age + `</td>`
-                        + `<td>` + user.height + `</td>`
-                    + `</tr>`
-            }
-            return str
-        }
-    }
-
-    class Person {
-        name
-        age
-        height
-        str
-
-        constructor(name, age, height) {
-            this.name = name
-            this.age = age
-            this.height = height
-            this.str = getDataStr([this.name, this.age, this.height])
-        }
-
-        static display(persons) {
-            let str = ""
-            let counter = persons.length
-            for (let i = 0; i < counter; i++)
-                str += persons.pop().str;
-
-            return str
-        }
-    }
-
-    class Employee extends Person {
-        post
-
-        constructor(name, age, height, post) {
-            super(name, age, height)
-            this.post = post
-            this.str = getDataStr([this.name, this.age, this.height, this.post])
-        }
-
-        static display(persons) {
-            let str = ""
-            let counter = persons.length
-            for (let i = 0; i < counter; i++)
-                str += persons.pop().str;
-
-            return str
-        }
-    }
-
-    function getFieldStr(arr) {
-        let str = ""
-        for (let i = 0; i < arr.length; i++) {
-            str += `<p>` + arr[i] + `</p>`
-        }
-        return str
-    }
-
-    function getDataStr(arr) {
-        return `<div class='task inline'>` + getFieldStr(arr) + `</div>`
-    }
-
+    index = 0
     $(document).ready(function () {
+
+        window.setInterval(function () {
+            let colors = ["#ff0000", "#fd8d8d", "#ffffff", "#ff8b8b", "#ff0000"]
+            let str = ``
+            for(let i = 0; i < 5; i++){
+                str += `<div class="box inline" style="background-color: ` + colors[index] + `"></div>`
+                index++
+                //alert(index)
+                if(index >= 5) index = 1
+            }
+            //alert(str)
+            document.getElementById('Text_Task1').innerHTML = str
+        }, 300);
+
         $("#task1").click(function () {
             let b = confirm("Отобразить список дней недели на английском?");
 
