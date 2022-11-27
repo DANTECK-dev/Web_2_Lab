@@ -358,3 +358,12 @@ td>a:hover::after
 {
     content: "";
 }
+.red{
+    color:red;
+}
+.blue{
+    color:blue;
+}
+.green{
+    color:green;
+}

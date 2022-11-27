@@ -231,18 +231,14 @@
         $("#task5").click(function(){
             let value = parseInt(getRandomInt(0, 10))
             let arr = [];
-
             for(let i = 0; ;i++) {
                 let a = parseInt(prompt('Число: '))
-
                 if(isNaN(a))
                 {
                     i--;
                     continue
                 }
-
                 arr[i] = a;
-
                 if (a < value) {
                     alert("Ваше число МЕНЬШЕ загаданного!")
                 }
@@ -253,9 +249,7 @@
 
                 if (a === value) {
                     alert("ПОБЕДА!")
-
                     document.getElementById("Answers").innerHTML = "Ответы: " + arr;
-
                     break;
                 }
             }

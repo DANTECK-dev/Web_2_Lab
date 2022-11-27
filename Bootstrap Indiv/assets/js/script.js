@@ -4,11 +4,51 @@ window.onload = function () {
         document.body.classList.add('loaded');
         document.body.classList.remove('loaded_hiding');
     }, 500);
+
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
-    const rand_link = ["arduino.html", "raspberry.html", "index.html"][getRandomInt(0,3)]
-    document.getElementById("rand_link").innerHTML = `<a href=` + rand_link + `>Забыли пароль?</a>`
+
+    class Table{
+        col
+        data
+        constructor(col, data) {
+            this.col = col
+            this.data = data
+        }
+        GetTable(){
+            let str="<table><tbody>"
+            for(let row = 0; row < rows.length; row++){
+                str+=""
+            }
+        }
+    }
+
+    class Link {
+        hyperlink
+        tooltip
+        color
+
+        constructor(link, tooltip, color) {
+            this.hyperlink = link
+            this.tooltip = tooltip
+            this.color = color
+        }
+
+        GetHTML() {
+            return `<a title='` + this.tooltip + `' href='` + this.hyperlink + `' class='` + this.color + `'>Забыли пароль?</a>`
+        }
+    }
+
+    let links = [
+        new Link("arduino.html", "Arduino", "red"),
+        new Link("raspberry.html", "Raspberry", "green"),
+        new Link("index.html", "Главная", "blue"),
+    ]
+
+    const rand_link = links[getRandomInt(0, 3)]
+    document.getElementById("rand_link").innerHTML = rand_link.GetHTML()
+
     function changeColor(day) {
         if (day) {
             console.log("сейчас день")
@@ -72,7 +112,7 @@ window.onload = function () {
     day = changeColor(day)
     if (!day) {
         clock = document.getElementById("clock").innerHTML =
-            + String(now.getDate()).padStart(2, '0') + "/"
+            +String(now.getDate()).padStart(2, '0') + "/"
             + String(now.getMonth() + 1).padStart(2, '0') + "/"
             + now.getFullYear()
             + " Текущее время: "
@@ -82,7 +122,7 @@ window.onload = function () {
             + " Включена дневная тема";
     } else {
         clock = document.getElementById("clock").innerHTML =
-            + String(now.getDate()).padStart(2, '0') + "/"
+            +String(now.getDate()).padStart(2, '0') + "/"
             + String(now.getMonth() + 1).padStart(2, '0') + "/"
             + now.getFullYear()
             + " Текущее время: "
@@ -105,7 +145,7 @@ window.onload = function () {
         }
         if (!day) {
             clock = document.getElementById("clock").innerHTML =
-                + String(now.getDate()).padStart(2, '0') + "/"
+                +String(now.getDate()).padStart(2, '0') + "/"
                 + String(now.getMonth() + 1).padStart(2, '0') + "/"
                 + now.getFullYear()
                 + " Текущее время: "
@@ -115,7 +155,7 @@ window.onload = function () {
                 + " Включена дневная тема";
         } else {
             clock = document.getElementById("clock").innerHTML =
-                + String(now.getDate()).padStart(2, '0') + "/"
+                +String(now.getDate()).padStart(2, '0') + "/"
                 + String(now.getMonth() + 1).padStart(2, '0') + "/"
                 + now.getFullYear()
                 + " Текущее время: "
@@ -124,5 +164,5 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
-    }, 1000 );
+    }, 1000);
 }
