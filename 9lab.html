@@ -148,6 +148,34 @@
     .round {
         border-radius: 100%;
     }
+
+    :root {
+        --oldposx: 0px;
+        --oldposy: 0px;
+        --posx: 0px;
+        --posy: 0px;
+    }
+
+    .move {
+        animation: moving infinite 1s linear;
+    }
+
+    @keyframes moving {
+        0% {
+            left: var(--oldposx);
+            top: var(--oldposy);
+        }
+        100% {
+            left: var(--posx);
+            top: var(--posy);
+        }
+
+    }
+
+    #task2 {
+        width: 200px;
+        height: 200px;
+    }
 </style>
 <body>
 <div class="task1">
@@ -168,8 +196,11 @@
         анимацию с transfotm: translate() или requestAnimationFrame() для перемещения). После того, как он достигает
         выбранной координаты, должна выбираться новая случайная координата и так далее.
     </p>
-    <div class="row" id="Text_Task2"></div>
-    <button id="task2">Запуск 2 задания</button>
+    <!--<div class="row" id="Text_Task2"><div class="task round box" id="o"></div></div>-->
+    <div class="row">
+        <button class="task round box" id="task2">Запуск 2 задания</button>
+        <div id="o"/>
+    </div>
 </div>
 <div class="task3">
     <h2>Задание 3</h2>
@@ -208,12 +239,17 @@
 
     index = 0
     $(document).ready(function () {
-
         window.setInterval(function () {
-            let colors = ["#ff0000", "#fd8d8d", "#ffffff", "#ff8b8b", "#ff0000"]
+            let colors = [
+                "#ff0000",
+                "#fd8d8d",
+                "#ffd1d1",
+                "#ff8b8b",
+                "#ff0000"
+            ]
             let str = ``
             for (let i = 0; i < 5; i++) {
-                str += `<div class="box inline" style="background-color: ` + colors[index] + `"></div>`
+                str += `<div class="box inline" style="border-radius: 15px; background-color: ` + colors[index] + `"></div>`
                 index++
                 //alert(index)
                 if (index >= 5) index = 1
@@ -222,46 +258,77 @@
             document.getElementById('Text_Task1').innerHTML = str
         }, 300);
 
-        $("#task2").click(function () {
-            let width = getRandomInt(0 - (window.screen.width / 2), window.screen.width / 2)
-            let height = getRandomInt(0 - (window.screen.height / 2), window.screen.height / 2)
+        document.getElementById("task2").innerHTML
+            = `<div class="move round" style="min-height: 10px;min-width: 10px;background-color: red;position: fixed;left: 50%;top: 50%;"></div>`
 
-            document.write(`<div></div>`)
-            document.getElementById("Text_Task2").innerHTML = `<div class="task round box"></div>`
+        window.setInterval(function () {
+            let x = getRandomInt(0, window.screen.width)
+            let y = getRandomInt(0, window.screen.height)
+            //alert(x + " " + y)
+            const root = document.querySelector(':root')
+            const getProperty = vars => Object.entries(vars).forEach(v => root.style.getPropertyValue('--oldposx'))
+            const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
+            const myVariables = {
+                '--oldposx': this['--posx'],
+                '--oldposy': this['--posy'],
+                '--posx': x + 'px',
+                '--posy': y + 'px',
+            };
+            alert(getProperty)
+            alert("oldposx " + myVariables['--oldposx']
+                + " oldposy " + myVariables['--oldposy']
+                + " posx " + myVariables['--posx']
+                + " posy " + myVariables['--posy'])
+            setVariables(myVariables);
+        }, 1000);
+        $("#task2").click(function () {
+            //let c = this.getBoundingClientRect()
+            //alert(c.top + " " + c.left)
+            //let width = getRandomInt(0, window.screen.width)
+            //let height = getRandomInt(0, window.screen.height)
+            //const root = document.querySelector(':root');
+            //const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
+            //const myVariables = {
+            //    '--posx': c.left + c.width / 2 + 'px',
+            //    '--posy': c.top + c.height / 2 + 'px',
+            //};
+            //setVariables(myVariables);
+            //document.getElementById("task2").innerHTML
+            //= `<div class="move round" style="min-height: 10px;min-width: 10px;background-color: red;position: fixed;left: ` + width + `px;top: ` + height + `px;"></div>`
         });
         $("#task3").click(function () {
+
+            function HTML_List(arr) {
+
+            }
+
             let arr = []
 
             while (true) {
-                let name = prompt("Employee: Введите ФИО")
-                if (name === "") break;
-
-                let age = prompt("Employee: Введите возраст")
-                if (age === "") break;
-
-                let height = prompt("Employee: Введите рост")
-                if (height === "") break;
-
-                let post = prompt("Employee: Введите должность")
-                if (post === "") break;
-
-                arr.push(new Employee(name, age, height, post))
+                let b = prompt("Введите текст")
+                if (b === "")
+                    break;
+                arr.push(b)
             }
+
+            document.getElementById("Text_Task3").innerHTML = HTML_List(arr);
+        });
+        $("#task4").click(function () {
+
+            function HTML_List(arr) {
+
+            }
+
+            let arr = []
 
             while (true) {
-                let name = prompt("Person: Введите ФИО")
-                if (name === "") break;
-
-                let age = prompt("Person: Введите возраст")
-                if (age === "") break;
-
-                let height = prompt("Person: Введите рост")
-                if (height === "") break;
-
-                arr.push(new Person(name, age, height))
+                let b = prompt("Введите текст")
+                if (b === "")
+                    break;
+                arr.push(b)
             }
 
-            document.getElementById("Text_Task3").innerHTML = Employee.display(arr);
+            document.getElementById("Text_Task3").innerHTML = HTML_List(arr);
         });
     });
 </script>

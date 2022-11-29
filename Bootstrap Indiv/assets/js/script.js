@@ -17,7 +17,7 @@ window.onload = function () {
         }
 
         GetTable() {
-            let str = "<table><tbody>"
+            let str = "<tbody>"
             for (let row = 0; row < this.matrix.length; row++) {
                 str += `<tr>`
                 let rows = matrixx[row]
@@ -38,7 +38,7 @@ window.onload = function () {
                 }
                 str += `</tr>`
             }
-            return (str + `</tbody></table>`)
+            return (str + `</tbody>`)
         }
     }
 
