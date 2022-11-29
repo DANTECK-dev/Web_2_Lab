@@ -109,12 +109,10 @@
     }
 
     img {
-        max-height: 300px;
         display: block;
-        margin: auto;
-        border-radius: 15px;
-        padding-bottom: 2%;
-        max-width: 100%;
+        margin: 1%;
+        border-radius: 10px;
+        max-width: 98%;
     }
 
     #task4_text {
@@ -156,8 +154,24 @@
         --posy: 0px;
     }
 
-    .move {
+    .move1 {
         animation: moving infinite 1s linear;
+    }
+
+    .move2 {
+        animation: moving infinite 1s ease-out;
+    }
+
+    .move3 {
+        animation: moving infinite 1s ease-in;
+    }
+
+    .move4 {
+        animation: moving infinite 1s ease-in-out;
+    }
+
+    .move5 {
+        animation: moving infinite 1s cubic-bezier(0.68, -0.35, 0.27, 1.35);
     }
 
     @keyframes moving {
@@ -172,9 +186,30 @@
 
     }
 
-    #task2 {
-        width: 200px;
-        height: 200px;
+    .text {
+        align-self: flex-start;
+        text-align: justify;
+        font-size: 17px;
+        background-color: #f1d3ac;
+        border-radius: 10px;
+        padding: 3%;
+        margin: 1%;
+    }
+
+    .o {
+        min-height: 10px;
+        min-width: 10px;
+        position: fixed;
+        left: 50%;
+        top: 50%
+    }
+
+    .post > img {
+        margin: 1%;
+    }
+
+    .post {
+        margin: 5px;
     }
 </style>
 <body>
@@ -196,11 +231,11 @@
         анимацию с transfotm: translate() или requestAnimationFrame() для перемещения). После того, как он достигает
         выбранной координаты, должна выбираться новая случайная координата и так далее.
     </p>
-    <!--<div class="row" id="Text_Task2"><div class="task round box" id="o"></div></div>-->
-    <div class="row">
-        <button class="task round box" id="task2">Запуск 2 задания</button>
-        <div id="o"/>
-    </div>
+    <div class="move1 round o" style="background-color: #ff3434;"></div>
+    <div class="move2 round o" style="background-color: #ff2828;"></div>
+    <div class="move3 round o" style="background-color: #ff5656;"></div>
+    <div class="move4 round o" style="background-color: #ffaeae;"></div>
+    <div class="move5 round o" style="background-color: #ff7c7c;"></div>
 </div>
 <div class="task3">
     <h2>Задание 3</h2>
@@ -211,24 +246,29 @@
         должны быть объектами Node (используйте функции createElement() и appendChild() для этого). Функция возвращает
         объект html-список в качестве результата. Присоедините его к странице в body
     </p>
-    <div class="row" id="Text_Task3"></div>
+    <div class="col Text_Task3"></div>
     <button id="task3">Запуск 3 задания</button>
 </div>
 <div class="task4">
     <h2>Задание 4</h2>
     <p class="task">
-        Создайте страницу, на которой генерируются случайные посты. Создайте массив ссылок на картинки (нужно для
-        случайной генерации картинок). Создайте массив предложений (нужно для случайной генерации текстов). Пользователь
-        должен вводить количество постов (K) и количество предложений (Kpr) в каждом посте (prompt). Для создания поста
-        в первую очередь создайте элемент div. Далее создайте элемент картинку (img). Добавьте эту картинку в div как
-        дочерний элемент. Создайте абзац (p) и также добавьте в div как дочерний элемент. Используйте для этого
-        createElement() и appendChild(). Создайте массив постов и заполните его с помощью cloneNode() копиями поста в
-        количестве K. Для каждой копии:  Задайте цвет шрифта и цвет заднего фона случайным образом (можно создать набор
-        классов стилей для случайного выбора).  Задайте случайную ссылку из массива на картинку элемента img с этого
-        div.  Случайным образом заполните элемент p предложениями в количестве Kpr. Добавьте все посты из массива на
+        Создайте страницу, на которой генерируются случайные посты.
+        Создайте массив ссылок на картинки (нужно для случайной генерации картинок).
+        Создайте массив предложений (нужно для случайной генерации текстов).
+        Пользователь должен вводить количество постов (K) и количество предложений (Kpr) в каждом посте (prompt).
+        Для создания поста в первую очередь создайте элемент div. Далее создайте элемент картинку (img).
+        Добавьте эту картинку в div как дочерний элемент.
+        Создайте абзац (p) и также добавьте в div как дочерний элемент.
+        Используйте для этого createElement() и appendChild().
+        Создайте массив постов и заполните его с помощью cloneNode() копиями поста в количестве K. Для каждой копии
+        Задайте цвет шрифта и цвет заднего фона случайным образом (можно создать набор классов стилей для случайного
+        выбора).
+        Задайте случайную ссылку из массива на картинку элемента img с этого div.
+        Случайным образом заполните элемент p предложениями в количестве Kpr.
+        Добавьте все посты из массива на
         страницу. К примеру, 3 поста и 3 случайные предложения
     </p>
-    <div class="row" id="Text_Task4"></div>
+    <div class="row Text_Task4"></div>
     <button id="task4">Запуск 4 задания</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -239,67 +279,49 @@
 
     index = 0
     $(document).ready(function () {
+        //task1
         window.setInterval(function () {
             let colors = [
-                "#ff0000",
+                "#ff4444",
                 "#fd8d8d",
                 "#ffd1d1",
                 "#ff8b8b",
-                "#ff0000"
+                "#ff4444"
             ]
             let str = ``
             for (let i = 0; i < 5; i++) {
                 str += `<div class="box inline" style="border-radius: 15px; background-color: ` + colors[index] + `"></div>`
                 index++
-                //alert(index)
                 if (index >= 5) index = 1
             }
-            //alert(str)
             document.getElementById('Text_Task1').innerHTML = str
         }, 300);
 
-        document.getElementById("task2").innerHTML
-            = `<div class="move round" style="min-height: 10px;min-width: 10px;background-color: red;position: fixed;left: 50%;top: 50%;"></div>`
-
+        //task2
         window.setInterval(function () {
-            let x = getRandomInt(0, window.screen.width)
-            let y = getRandomInt(0, window.screen.height)
-            //alert(x + " " + y)
+            let x = getRandomInt(0, window.window.innerWidth)
+            let y = getRandomInt(0, window.window.innerHeight)
             const root = document.querySelector(':root')
-            const getProperty = vars => Object.entries(vars).forEach(v => root.style.getPropertyValue('--oldposx'))
+            let posx = window.getComputedStyle(document.body).getPropertyValue('--posx')
+            let posy = window.getComputedStyle(document.body).getPropertyValue('--posy')
             const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
             const myVariables = {
-                '--oldposx': this['--posx'],
-                '--oldposy': this['--posy'],
+                '--oldposx': posx,
+                '--oldposy': posy,
                 '--posx': x + 'px',
                 '--posy': y + 'px',
             };
-            alert(getProperty)
-            alert("oldposx " + myVariables['--oldposx']
-                + " oldposy " + myVariables['--oldposy']
-                + " posx " + myVariables['--posx']
-                + " posy " + myVariables['--posy'])
             setVariables(myVariables);
         }, 1000);
-        $("#task2").click(function () {
-            //let c = this.getBoundingClientRect()
-            //alert(c.top + " " + c.left)
-            //let width = getRandomInt(0, window.screen.width)
-            //let height = getRandomInt(0, window.screen.height)
-            //const root = document.querySelector(':root');
-            //const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
-            //const myVariables = {
-            //    '--posx': c.left + c.width / 2 + 'px',
-            //    '--posy': c.top + c.height / 2 + 'px',
-            //};
-            //setVariables(myVariables);
-            //document.getElementById("task2").innerHTML
-            //= `<div class="move round" style="min-height: 10px;min-width: 10px;background-color: red;position: fixed;left: ` + width + `px;top: ` + height + `px;"></div>`
-        });
+
         $("#task3").click(function () {
-
             function HTML_List(arr) {
-
+                let elem = document.createElement("h2")
+                elem.className = "text"
+                for (let i = 0; i < arr.length; i++) {
+                    elem.appendChild(document.createTextNode(arr[i] + "\n"))
+                }
+                return elem
             }
 
             let arr = []
@@ -311,24 +333,67 @@
                 arr.push(b)
             }
 
-            document.getElementById("Text_Task3").innerHTML = HTML_List(arr);
+            document.querySelector("div.Text_Task3").appendChild(HTML_List(arr));
         });
         $("#task4").click(function () {
 
-            function HTML_List(arr) {
+            let links = [
+                "https://s1.1zoom.ru/big3/984/Canada_Parks_Lake_Mountains_Forests_Scenery_Rocky_567540_3840x2400.jpg",
+                "https://img1.akspic.ru/attachments/crops/2/2/4/0/50422/50422-senokosnoye_ugodye-pole-selskoe_hozyajstvo-zakat-risovoe_pole-2560x1440.jpg",
+                "https://get.wallhere.com/photo/2048x1152-px-nature-rock-sunset-1054177.jpg",
+                "https://fikiwiki.com/uploads/posts/2022-02/1644855593_25-fikiwiki-com-p-kartinki-khd-kachestva-26.jpg",
+                "https://img1.akspic.ru/attachments/crops/1/7/1/2/0/102171/102171-peyzash-nebo-vodohranilishhe-priroda-fjord-1920x1080.jpg",
+                "https://mobimg.b-cdn.net/v3/fetch/fc/fc97db329bd4482025eaa1e3961dc80e.jpeg?w=1470&r=0.5625",
+                "https://img.fonwall.ru/o/94/goryi_sneg_verhushki_derevya_elki_25.jpg?route=mid&amp;h=750",
+                "https://img1.akspic.ru/attachments/crops/9/9/8/2/22899/22899-zamok_nojshvanshtajn-peyzash-doroga-senokosnoye_ugodye-pejzazhi_gor-1920x1080.jpg",
+                "https://answit.com/wp-content/uploads/2017/01/full-hd.jpg",
+            ]
+            let texts = [
+                "Господа, высокое качество позиционных исследований требует от нас анализа поставленных обществом задач.",
+                "Господа, семантический разбор внешних противодействий говорит о возможностях благоприятных перспектив.",
+                "Есть над чем задуматься: активно развивающиеся страны третьего мира обнародованы.",
+                "Есть над чем задуматься: представители современных социальных резервов могут быть призваны к ответу.",
+                "А ещё элементы политического процесса функционально разнесены на независимые элементы.",
+                "Господа, выбранный нами инновационный путь является качественно новой ступенью стандартных подходов.",
+                "В частности, глубокий уровень погружения в значительной степени обусловливает важность модели развития.",
+                "Но базовый вектор развития играет важную роль в формировании анализа существующих паттернов поведения.",
+                "Безусловно, глубокий уровень погружения играет важную роль в формировании кластеризации усилий!",
+            ]
 
+            let K
+            let Kpr
+
+            do {
+                K = prompt("Количество постов (не более " + links.length + ")")
+            } while (K != parseInt(K) || K >= links.length || K < 0)
+
+            do {
+                Kpr = prompt("Количество предложений в посте (не более " + texts.length + ")")
+            } while (Kpr != parseInt(Kpr) || Kpr >= texts.length || Kpr < 0)
+
+            function GenerateText() {
+                let text_post = document.createElement("h3")
+                text_post.className = "text"
+                let node = document.createTextNode(texts[getRandomInt(0, texts.length)])
+                text_post.appendChild(node)
+                return text_post
             }
 
-            let arr = []
-
-            while (true) {
-                let b = prompt("Введите текст")
-                if (b === "")
-                    break;
-                arr.push(b)
+            function GeneratePost() {
+                let post = document.createElement("div")
+                let img = document.createElement("img")
+                img.src = links[getRandomInt(0, links.length)]
+                post.className = "post task"
+                post.appendChild(img)
+                for (let i = 0; i < Kpr; i++) {
+                    post.appendChild(GenerateText())
+                }
+                return post
             }
 
-            document.getElementById("Text_Task3").innerHTML = HTML_List(arr);
+            for (let i = 0; i < K; i++) {
+                document.querySelector("div.Text_Task4").appendChild(GeneratePost());
+            }
         });
     });
 </script>
