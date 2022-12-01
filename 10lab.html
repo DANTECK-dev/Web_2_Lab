@@ -5,15 +5,22 @@
     <title>10 Лаба Web</title>
 </head>
 <style>
+    body {
+        background-color: transparent;
+        height: 100%;
+    }
+
     *, *::before, *::after {
         box-sizing: border-box;
         font-family: "Comic Sans MS", monospace;
         transition: 1s ease-in-out;
         outline: none;
     }
+
     *:active, *:focus-visible {
         outline: none;
     }
+
     button:active, button:focus-visible, input:active, input:focus-visible {
         outline: 1px solid red;
     }
@@ -97,9 +104,7 @@
     }
 
     button {
-        border-width: 1px;
-        border-style: solid;
-        border-color: burlywood;
+        border: burlywood 1px solid;
         text-align: center;
         display: block;
         width: 100%;
@@ -122,10 +127,6 @@
         max-width: 98%;
     }
 
-    #task4_text {
-        margin-bottom: 15px;
-    }
-
     table {
         border-collapse: collapse;
         font-family: sans-serif;
@@ -139,21 +140,6 @@
         padding: 5px 5px 5px 5px;
     }
 
-    .inline {
-        display: inline;
-        margin: 1%;
-    }
-
-    .box {
-        min-width: 200px;
-        min-height: 200px;
-        margin: 1%;
-    }
-
-    .round {
-        border-radius: 100%;
-    }
-
     :root {
         --oldposx: 0px;
         --oldposy: 0px;
@@ -161,24 +147,135 @@
         --posy: 0px;
     }
 
-    .move1 {
-        animation: moving infinite 1s linear;
+    input {
+        border-radius: 10px 0 0 10px;
+        width: 100%;
+        height: 60px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: burlywood;
+        text-align: center;
+        outline: none;
     }
 
-    .move2 {
-        animation: moving infinite 1s ease-out;
+    input:hover {
+        border: #00BFFF 1px solid;
     }
 
-    .move3 {
-        animation: moving infinite 1s ease-in;
+    #input_task1 {
+        margin-right: 0;
+        border-right: 0;
     }
 
-    .move4 {
+    #task1 {
+        border-radius: 0 10px 10px 0;
+        border-left: 0;
+        margin-left: 0;
+    }
+
+    .bullet {
+        margin-left: 0;
+        list-style: none;
+        counter-reset: li;
+    }
+
+    .bullet li {
+        position: relative;
+        margin-bottom: 1.5em;
+        border: 3px solid blanchedalmond;
+        padding: 0.6em;
+        border-radius: 4px;
+        background: burlywood;
+        color: #231F20;
+    }
+
+    .bullet li:before {
+        position: absolute;
+        top: -0.7em;
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        font-size: 16px;
+        font-weight: bold;
+        color: blanchedalmond;
+        background: burlywood;
+        border-radius: 50%;
+        counter-increment: li;
+        content: counter(li);
+    }
+
+    #Hit_Maker {
+        position: static;
+        width: 100%;
+        height: 100%;
+    }
+
+    #Hit_Maker > .X, #Hit_Maker > .Y {
+        position: fixed;
+        border: #be5858 1px dashed;
+    }
+
+    #Hit_Maker > .X {
+        width: 0;
+        height: 100%;
+        animation: infinite movX 100ms linear;
+    }
+
+    #Hit_Maker > .Y {
+        width: 100%;
+        height: 0;
+        animation: infinite movY 100ms linear;
+    }
+
+    @keyframes movX {
+        0% {
+            width: 0;
+            height: 100%;
+            left: var(--oldposx);
+        }
+        100% {
+            width: 0;
+            height: 100%;
+            left: var(--posx);
+        }
+    }
+
+    @keyframes movY {
+        0% {
+            width: 100%;
+            height: 0;
+            top: var(--oldposy);
+        }
+        100% {
+            width: 100%;
+            height: 0;
+            top: var(--posy);
+        }
+    }
+
+    #List_Task4 {
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .round {
+        border-radius: 100%;
+    }
+
+    .o {
+        min-height: 10px;
+        min-width: 10px;
+        position: fixed;
+        left: 50%;
+        top: 50%
+    }
+
+    .move {
         animation: moving infinite 1s ease-in-out;
     }
 
-    .move5 {
-        animation: moving infinite 1s cubic-bezier(0.68, -0.35, 0.27, 1.35);
+    .state {
+        left: var(--posx);
+        top: var(--posy);
     }
 
     @keyframes moving {
@@ -192,75 +289,89 @@
         }
 
     }
-
-    .text {
-        align-self: flex-start;
-        text-align: justify;
-        font-size: 17px;
-        background-color: #f1d3ac;
-        border-radius: 10px;
-        padding: 3%;
-        margin: 1%;
-    }
-
-    .o {
-        min-height: 10px;
-        min-width: 10px;
+    .menu{
         position: fixed;
-        left: 50%;
-        top: 50%
-    }
-
-    .post > img {
-        margin: 1%;
-    }
-
-    .post {
-        margin: 5px;
-    }
-
-    input {
-        border-radius: 10px 0 0 10px;
-        width: 100%;
-        height: 60px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: burlywood;
-        text-align: center;
-        outline: none;
-    }
-    input:hover{
-        border: #00BFFF 1px solid;
-    }
-
-    #task1 {
+        top: 0;
+        left: 0;
+        width: 7%;
+        height: 100%;
+        background-color: burlywood;
         border-radius: 0 10px 10px 0;
+    }
+    .menu>button {
+        background-color: blanchedalmond;
+        margin: 10% 10% 10% 0 ;
+        border-radius: 0 10px 10px 0;
+        width: 80%;
+    }
+    .list {
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        padding:  0 0 0 0;
+    }
+    li {
+
+        background-color: transparent;
+    }
+    li>a{
+        padding: 2px;
+        margin: 5px;
+        background-color: blanchedalmond;
+        border-radius: 4px;
     }
 </style>
 <body>
+<!--
+<div id="Hit_Maker">
+    <div class="X"></div>
+    <div class="Y"></div>
+</div>
+-->
+<div class="menu">
+    <ul class="list" align="center">
+        <li align="center">Лабы.р.</li>
+        <ul align="center">
+            <li align="center">1 Лаба</li>
+            <li align="center">2 Лаба</li>
+            <li align="center"><a href="3lab.html">3 Лаба</a></li>
+            <li align="center"><a href="4lab.html">4 Лаба</a></li>
+            <li align="center"><a href="5lab.html">5 Лаба</a></li>
+            <li align="center"><a href="6lab.html">6 Лаба</a></li>
+            <li align="center"><a href="7lab.html">7 Лаба</a></li>
+            <li align="center"><a href="8lab.html">8 Лаба</a></li>
+            <li align="center"><a href="9lab.html">9 Лаба</a></li>
+            <li align="center"><a href="10lab.html">10 Лаба</a></li>
+            <li align="center">11 Лаба</li>
+        </ul>
+        <li align="center">""</li>
+        <li align="center">Инд.р.</li>
+        <ul align="center">
+            <li align="center"><a href="Bootstrap%20Indiv/index.html">Робото- техника</a></li>
+            <li align="center"><a href="Bootstrap%20Indiv/arduino.html">Arduino</a></li>
+            <li align="center"><a href="Bootstrap%20Indiv/raspberry.html">Raspberry Pi</a></li>
+        </ul>
+    </ul>
+</div>
 <div class="task1">
     <h2>Задание 1</h2>
     <p class="task">
         Создайте поле для ввода и кнопку. Сделайте так, чтобы при нажатии на кнопку данные, введенные пользователем,
         добавлялись в массив (изначально массив пустой).
     </p>
-    <div class="row" id="Text_Task1"></div>
-    <form class="row" name="Form_Task1">
-        <input name="Input_Task1" placeholder="Введите текст">
-        <button id="task1">Запуск 1 задания</button>
-    </form>
-</div>
-<div class="task2">
     <h2>Задание 2</h2>
     <p class="task">
         Отображайте этот массив на странице в виде html-списка. После нажатия поле должно очищаться. Проводите проверку
         на пустую строку, чтобы не добавлять их в массив.
     </p>
-    <div class="move1 round o" style="background-color: #ff3434;"></div>
-    <div class="move2 round o" style="background-color: #ff2828;"></div>
-    <div class="move3 round o" style="background-color: #ff5656;"></div>
-    <div class="move4 round o" style="background-color: #ffaeae;"></div>
-    <div class="move5 round o" style="background-color: #ff7c7c;"></div>
+    <div class="row" id="Text_Task1"></div>
+    <div class="row">
+        <form name="Form_Task1" style="width: 100%">
+            <input name="Input_Task1" id="input_task1" placeholder="Введите текст">
+        </form>
+        <button name="task1" id="task1">Запуск 1 задания</button>
+    </div>
 </div>
 <div class="task3">
     <h2>Задание 3</h2>
@@ -270,8 +381,12 @@
         При нажатии на кнопку цвет текста кнопки должен меняться на случайный.
         Сделайте это через функции на каждое событие, но общие для всех кнопок (с помощью this)
     </p>
-    <div class="col Text_Task3"></div>
-    <button id="task3">Запуск 3 задания</button>
+    <div class="col" id="Text_Task3"></div>
+    <div class="row">
+        <button id="task3_1">Не наведен</button>
+        <button id="task3_2">Не наведен</button>
+        <button id="task3_3">Не наведен</button>
+    </div>
 </div>
 <div class="task4">
     <h2>Задание 4</h2>
@@ -282,11 +397,14 @@
         При повторном нажатии – на «Очень старый». При нажатии на «очень старый» элемент, тот должен удаляться из
         списка.
     </p>
-    <div class="row Text_Task4"></div>
-    <button id="task4">Запуск 4 задания</button>
+    <div class="row">
+        <ol class="bullet" id="List_Task4">
+        </ol>
+    </div>
+    <button id="task4">Добавить элемент в список</button>
 </div>
 <div class="task5">
-    <h2>Задание 4</h2>
+    <h2>Задание 5</h2>
     <p class="task">
         Измененный вариант второго задания из прошлой лабораторной работы:
         Создайте элемент div в виде круга.
@@ -296,7 +414,9 @@
         перемещения).
         При каждом нажатии координаты должны определяться заново.
     </p>
-    <div class="row Text_Task4"></div>
+    <div class="row" id="Text_Task5">
+    </div>
+
     <button id="task5">Запуск 5 задания</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -305,97 +425,99 @@
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    index = 0
     $(document).ready(function () {
-        $("#task1").click(function () {
+
+        //task 1,2
+        let arr = []
+        document.querySelector('#task1').addEventListener("click", function (e) {
             let form = document.forms.Form_Task1
             let input = form.elements.Input_Task1
-            alert(input.value)
+            if (input.value === "") {
+                alert("А где!?")
+                return
+            }
+            arr.push(input.value)
+            input.value = ""
+            let str = `<ol class="bullet">`
+            for (let i = 0; i < arr.length; i++) {
+                str += `<li>` + arr[i] + `</li>`
+            }
+            str += `</ol>`
+            document.getElementById('Text_Task1').innerHTML = str
         });
-        $("#task2").click(function () {
 
-        });
-        $("#task3").click(function () {
-            function HTML_List(arr) {
-                let elem = document.createElement("h2")
-                elem.className = "text"
-                for (let i = 0; i < arr.length; i++) {
-                    elem.appendChild(document.createTextNode(arr[i] + "\n"))
-                }
-                return elem
+        document.querySelector('#task3_1').addEventListener("mouseover", function (e) {
+            document.getElementById('task3_1').innerText = "Наведен"
+        })
+        document.querySelector('#task3_1').addEventListener("mouseleave", function (e) {
+            document.getElementById('task3_1').innerText = "Не наведен"
+        })
+        document.querySelector('#task3_1').addEventListener("click", function (e) {
+            document.getElementById('task3_1').style.backgroundColor = `#` + getRandomInt(0, 255) + getRandomInt(0, 255) + getRandomInt(0, 255)
+        })
+        document.querySelector('#task3_2').addEventListener("mouseover", function (e) {
+            document.getElementById('task3_2').innerText = "Наведен"
+        })
+        document.querySelector('#task3_2').addEventListener("mouseleave", function (e) {
+            document.getElementById('task3_2').innerText = "Не наведен"
+        })
+        document.querySelector('#task3_2').addEventListener("click", function (e) {
+            document.getElementById('task3_2').style.backgroundColor = `#` + getRandomInt(0, 255) + getRandomInt(0, 255) + getRandomInt(0, 255)
+        })
+        document.querySelector('#task3_3').addEventListener("mouseover", function (e) {
+            document.getElementById('task3_3').innerText = "Наведен"
+        })
+        document.querySelector('#task3_3').addEventListener("mouseleave", function (e) {
+            document.getElementById('task3_3').innerText = "Не наведен"
+        })
+        document.querySelector('#task3_3').addEventListener("click", function (e) {
+            document.getElementById('task3_3').style.backgroundColor = `#` + getRandomInt(0, 255) + getRandomInt(0, 255) + getRandomInt(0, 255)
+        })
+
+        document.querySelector('#task4').addEventListener("click", function (e) {
+            let li = document.createElement("li")
+            li.innerText = "Новый"
+            li.onmouseover = function () {
+                if (this.innerText === "Очень старый")
+                    this.innerText = "X"
+                this.style.color = 'blanchedalmond'
+                this.style.backgroundColor = '#ff6565'
             }
-
-            let arr = []
-
-            while (true) {
-                let b = prompt("Введите текст")
-                if (b === "")
-                    break;
-                arr.push(b)
+            li.onmouseleave = function () {
+                if (this.innerText === "X")
+                    this.innerText = "Очень старый"
+                this.style.color = '#231F20'
+                this.style.backgroundColor = 'burlywood'
             }
-
-            document.querySelector("div.Text_Task3").appendChild(HTML_List(arr));
-        });
-        $("#task4").click(function () {
-
-            let links = [
-                "https://s1.1zoom.ru/big3/984/Canada_Parks_Lake_Mountains_Forests_Scenery_Rocky_567540_3840x2400.jpg",
-                "https://img1.akspic.ru/attachments/crops/2/2/4/0/50422/50422-senokosnoye_ugodye-pole-selskoe_hozyajstvo-zakat-risovoe_pole-2560x1440.jpg",
-                "https://get.wallhere.com/photo/2048x1152-px-nature-rock-sunset-1054177.jpg",
-                "https://fikiwiki.com/uploads/posts/2022-02/1644855593_25-fikiwiki-com-p-kartinki-khd-kachestva-26.jpg",
-                "https://img1.akspic.ru/attachments/crops/1/7/1/2/0/102171/102171-peyzash-nebo-vodohranilishhe-priroda-fjord-1920x1080.jpg",
-                "https://mobimg.b-cdn.net/v3/fetch/fc/fc97db329bd4482025eaa1e3961dc80e.jpeg?w=1470&r=0.5625",
-                "https://img.fonwall.ru/o/94/goryi_sneg_verhushki_derevya_elki_25.jpg?route=mid&amp;h=750",
-                "https://img1.akspic.ru/attachments/crops/9/9/8/2/22899/22899-zamok_nojshvanshtajn-peyzash-doroga-senokosnoye_ugodye-pejzazhi_gor-1920x1080.jpg",
-                "https://answit.com/wp-content/uploads/2017/01/full-hd.jpg",
-            ]
-            let texts = [
-                "Господа, высокое качество позиционных исследований требует от нас анализа поставленных обществом задач.",
-                "Господа, семантический разбор внешних противодействий говорит о возможностях благоприятных перспектив.",
-                "Есть над чем задуматься: активно развивающиеся страны третьего мира обнародованы.",
-                "Есть над чем задуматься: представители современных социальных резервов могут быть призваны к ответу.",
-                "А ещё элементы политического процесса функционально разнесены на независимые элементы.",
-                "Господа, выбранный нами инновационный путь является качественно новой ступенью стандартных подходов.",
-                "В частности, глубокий уровень погружения в значительной степени обусловливает важность модели развития.",
-                "Но базовый вектор развития играет важную роль в формировании анализа существующих паттернов поведения.",
-                "Безусловно, глубокий уровень погружения играет важную роль в формировании кластеризации усилий!",
-            ]
-
-            let K
-            let Kpr
-
-            do {
-                K = prompt("Количество постов (не более " + links.length + ")")
-            } while (K != parseInt(K) || K >= links.length || K < 0)
-
-            do {
-                Kpr = prompt("Количество предложений в посте (не более " + texts.length + ")")
-            } while (Kpr != parseInt(Kpr) || Kpr >= texts.length || Kpr < 0)
-
-            function GenerateText() {
-                let text_post = document.createElement("h3")
-                text_post.className = "text"
-                let node = document.createTextNode(texts[getRandomInt(0, texts.length)])
-                text_post.appendChild(node)
-                return text_post
+            li.onclick = function () {
+                if (this.innerText === "Новый")
+                    this.innerText = "Старый"
+                else if (this.innerText === "Старый")
+                    this.innerText = "Очень старый"
+                else if (this.innerText === "Очень старый" || this.innerText === "X")
+                    document.getElementById('List_Task4').removeChild(this)
             }
+            document.getElementById('List_Task4').appendChild(li)
+        })
 
-            function GeneratePost() {
-                let post = document.createElement("div")
-                let img = document.createElement("img")
-                img.src = links[getRandomInt(0, links.length)]
-                post.className = "post task"
-                post.appendChild(img)
-                for (let i = 0; i < Kpr; i++) {
-                    post.appendChild(GenerateText())
-                }
-                return post
-            }
-
-            for (let i = 0; i < K; i++) {
-                document.querySelector("div.Text_Task4").appendChild(GeneratePost());
-            }
-        });
+        //task 5
+        document.body.addEventListener("click", function (e) {
+            document.getElementById('Text_Task5').innerHTML = `<div class="move round o" style="background-color: #ff3434;"></div>`
+            const root = document.querySelector(':root')
+            let posx = window.getComputedStyle(document.body).getPropertyValue('--posx')
+            let posy = window.getComputedStyle(document.body).getPropertyValue('--posy')
+            const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
+            const myVariables = {
+                '--oldposx': posx,
+                '--oldposy': posy,
+                '--posx': e.clientX + 'px',
+                '--posy': e.clientY + 'px',
+            };
+            setVariables(myVariables);
+            window.setTimeout(function () {
+                document.getElementById('Text_Task5').innerHTML = `<div class="state round o" style="background-color: #ff3434;"></div>`
+            }, 1000)
+        })
     });
 </script>
 </body>
