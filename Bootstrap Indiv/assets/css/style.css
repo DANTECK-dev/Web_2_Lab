@@ -367,3 +367,51 @@ td>a:hover::after
 .green{
     color:green;
 }
+#disable_backround {
+    background: gray;
+    display: none;
+    opacity: 95%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+}
+#disable_content {
+    display: block;
+}
+.AD {
+    background-color: #222;
+    border-radius: 15px 15px 15px 15px;
+    width: 50%;
+    height: 60%;
+    margin: 10% auto auto auto;
+}
+#Close_AD {
+    font-size: 30px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px 0 15px 0;
+    border: 0;
+    animation: mov_close_ad infinite 30s ease-out;
+}
+#Close_AD:disabled{
+    opacity: 95%;
+}
+@keyframes mov_close_ad {
+    0% {
+        color: white;
+        box-shadow: inset 50px 50px gray;
+    }
+    100% {
+        color: black;
+        box-shadow: inset 0 0 gray;
+    }
+
+}
+#AD_Content{
+    text-align: center;
+}

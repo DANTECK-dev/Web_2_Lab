@@ -5,6 +5,15 @@ window.onload = function () {
         document.body.classList.remove('loaded_hiding');
     }, 500);
 
+    let Closed_AD = true
+
+    // закрытие рекламы
+    document.querySelector('#Close_AD').addEventListener("click", function (e) {
+        document.getElementById('disable_backround').style.display = 'none'
+        document.getElementById('disable_content').style.display = 'block'
+        Closed_AD = true
+    })
+
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -22,7 +31,7 @@ window.onload = function () {
                 str += `<tr>`
                 let rows = matrixx[row]
                 for (let col = 0; col < rows.length; col++) {
-                    if (this.matrix[row][col].indexOf("@#strong#@") >= 0){
+                    if (this.matrix[row][col].indexOf("@#strong#@") >= 0) {
                         str += `<td><strong>` + this.matrix[row][col].replace("@#strong#@", "") + `</strong></td>`
                         continue
                     }
@@ -34,7 +43,7 @@ window.onload = function () {
                         str += `<td align="center" colspan="2">` + this.matrix[row][col].replace("@#2#@", "") + `</td>`
                         break
                     }
-                    str +=`<td align="center">` + this.matrix[row][col] + `</td>`
+                    str += `<td align="center">` + this.matrix[row][col] + `</td>`
                 }
                 str += `</tr>`
             }
@@ -64,7 +73,8 @@ window.onload = function () {
         ["@#strong#@Масса", "@#2#@54 г"]
     ];
     let table = new Table(matrixx)
-    document.getElementById('table').innerHTML = table.GetTable()
+    if (document.getElementById('table') !== null)
+        document.getElementById('table').innerHTML = table.GetTable()
 
     class Link {
         hyperlink
@@ -152,6 +162,7 @@ window.onload = function () {
     let hour = parseInt(now.toLocaleTimeString().split(':')[0])
     let day = hour > 7 && hour < 21;
     day = changeColor(day)
+
     if (!day) {
         clock = document.getElementById("clock").innerHTML =
             +String(now.getDate()).padStart(2, '0') + "/"
@@ -173,6 +184,7 @@ window.onload = function () {
             + now.toLocaleTimeString().split(':')[1]
             + " Включена ночная тема";
     }
+
     window.setInterval(function () {
         now = new Date();
         hour = parseInt(now.toLocaleTimeString().split(':')[0])
@@ -206,5 +218,73 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
+        if (Closed_AD) {
+            let AD = getRandomInt(0, 10) === 3
+            console.log(AD)
+            if (AD) {
+                const settings_img = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://hargrimm-wikihow-v1.p.rapidapi.com/images?count=1",
+                    "method": "GET",
+                    "headers": {
+                        "X-RapidAPI-Key": "340c10a1f2msh9c9e46a7c557a58p1b3528jsn299db424285d",
+                        "X-RapidAPI-Host": "hargrimm-wikihow-v1.p.rapidapi.com"
+                    }
+                };
+
+                $.ajax(settings_img).done(function (response_img) {
+                    //alert(response["1"])
+                    let img = `<img src=${response_img["1"]} alt="ad_image" style="width: 100%;border-radius: 15px;margin:auto;border: 0; background: lightgray; padding: 10px;"></img>`
+
+                    const settings_header = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://hargrimm-wikihow-v1.p.rapidapi.com/steps?count=1",
+                        "method": "GET",
+                        "headers": {
+                            "X-RapidAPI-Key": "340c10a1f2msh9c9e46a7c557a58p1b3528jsn299db424285d",
+                            "X-RapidAPI-Host": "hargrimm-wikihow-v1.p.rapidapi.com"
+                        }
+                    };
+
+                    $.ajax(settings_header).done(function (response_header) {
+                        //alert(response["1"])
+                        let header = `<h2>${response_header["1"]}</h2>`;
+
+                        const settings_text = {
+                            "async": true,
+                            "crossDomain": true,
+                            "url": "https://baconator-bacon-ipsum.p.rapidapi.com/?type=all-meat&paras=1",
+                            "method": "GET",
+                            "headers": {
+                                "X-RapidAPI-Key": "340c10a1f2msh9c9e46a7c557a58p1b3528jsn299db424285d",
+                                "X-RapidAPI-Host": "baconator-bacon-ipsum.p.rapidapi.com"
+                            }
+                        };
+                        $.ajax(settings_text).done(function (response_text) {
+                            //alert(response_text)
+                            let text = `<p style="color: #cacaca; padding: 15px;">${response_text[0]}</p>`
+
+                            //alert(response)
+                            document.getElementById('Close_AD').disabled = true
+                            document.getElementById('Close_AD').style.animation = 'mov_close_ad infinite 30s ease-out'
+                            window.setTimeout(function (){
+                                document.getElementById('Close_AD').disabled = false
+                                document.getElementById('Close_AD').style.animation = 'none'
+                            },30*1000)
+                            document.getElementById('AD_Content').innerHTML = img + header + text
+                            document.getElementById('disable_backround').style.display = 'block'
+                            document.getElementById('disable_content').style.display = 'none'
+                            AD = false
+                            Closed_AD = false
+                            //alert("done")
+                        });
+                    })
+                });
+            }
+        }
     }, 1000);
+
+
 }
