@@ -269,7 +269,16 @@
         top: 50%
     }
 
-    .move {
+    .move1 {
+        animation: moving infinite 1.3s ease-in-out;
+    }
+    .move2 {
+        animation: moving infinite 1.2s ease-in-out;
+    }
+    .move3 {
+        animation: moving infinite 1.1s ease-in-out;
+    }
+    .move4 {
         animation: moving infinite 1s ease-in-out;
     }
 
@@ -343,7 +352,7 @@
             <li align="center"><a href="8lab.html">8 Лаба</a></li>
             <li align="center"><a href="9lab.html">9 Лаба</a></li>
             <li align="center"><a href="10lab.html">10 Лаба</a></li>
-            <li align="center">11 Лаба</li>
+            <li align="center"><a href="11lab.html">11 Лаба</a></li>
         </ul>
         <li align="center">""</li>
         <li align="center">Инд.р.</li>
@@ -354,6 +363,7 @@
         </ul>
     </ul>
 </div>
+
 <div class="task1">
     <h2>Задание 1</h2>
     <p class="task">
@@ -502,7 +512,11 @@
 
         //task 5
         document.body.addEventListener("click", function (e) {
-            document.getElementById('Text_Task5').innerHTML = `<div class="move round o" style="background-color: #ff3434;"></div>`
+            document.getElementById('Text_Task5').innerHTML
+                = `<div class="move1 round o" style="background-color: #ff3434;"></div>`
+                + `<div class="move2 round o" style="background-color: #ff3434;"></div>`
+                + `<div class="move3 round o" style="background-color: #ff3434;"></div>`
+                + `<div class="move4 round o" style="background-color: #ff3434;"></div>`
             const root = document.querySelector(':root')
             let posx = window.getComputedStyle(document.body).getPropertyValue('--posx')
             let posy = window.getComputedStyle(document.body).getPropertyValue('--posy')

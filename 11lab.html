@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11 Лаба Web</title>
+</head>
+<style>
+    body {
+        background-color: transparent;
+        height: 100%;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", monospace;
+        transition: 1s ease-in-out;
+        outline: none;
+    }
+
+    *:active, *:focus-visible {
+        outline: none;
+    }
+
+    button:active, button:focus-visible, input:active, input:focus-visible, textarea:active, textarea:focus-visible {
+        outline: 1px solid red;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h2:first-letter {
+        color: #ff0000;
+    }
+
+    ul, li {
+        list-style-type: none;
+    }
+
+    li {
+        background-color: #f6d9ae;
+    }
+
+    #list > li:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(1) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    #list > li:nth-last-child(n+2) {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: blanchedalmond;
+    }
+
+    .text_task {
+        text-align: center;
+        font-size: 16px;
+        padding: 3px;
+        border-radius: 15px;
+        color: #29292A;
+        background-color: blanchedalmond;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 2px;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .col > * {
+        height: 100%;
+    }
+
+    .row {
+        display: flex;
+        margin: 2px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .row > * {
+        width: 100%;
+    }
+
+    .task {
+        background: burlywood;
+        max-width: 1200px;
+        display: block;
+        margin: 10px auto auto auto;
+        border-radius: 15px;
+        padding: 1%;
+    }
+
+    a, #list {
+        text-align: center;
+        display: block;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button {
+        border: burlywood 1px solid;
+        text-align: center;
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        background-color: blanchedalmond;
+        color: #29292A;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    button:hover {
+        background: dimgray;
+        color: blanchedalmond;
+    }
+
+    img {
+        display: block;
+        margin: 1%;
+        border-radius: 10px;
+        max-width: 98%;
+    }
+
+    table {
+        border-collapse: collapse;
+        font-family: sans-serif;
+        border: 1px solid grey;
+        margin: 10px;
+        width: 80%;
+    }
+
+    tr, td {
+        border: 1px solid grey;
+        padding: 5px 5px 5px 5px;
+    }
+
+    :root {
+        --oldposx: 0px;
+        --oldposy: 0px;
+        --posx: 0px;
+        --posy: 0px;
+    }
+
+    input {
+        border-radius: 15px 0 0 15px;
+        width: 100%;
+        height: 60px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: burlywood;
+        text-align: center;
+        outline: none;
+    }
+
+    input:hover, textarea:hover {
+        border: #00BFFF 1px solid;
+    }
+
+    #input_task1 {
+        margin-right: 0;
+        border-right: 0;
+    }
+
+    #task1 {
+        border-radius: 0 10px 10px 0;
+        border-left: 0;
+        margin-left: 0;
+    }
+
+    .bullet {
+        margin-left: 0;
+        list-style: none;
+        counter-reset: li;
+    }
+
+    .bullet li {
+        position: relative;
+        margin-bottom: 1.5em;
+        border: 3px solid blanchedalmond;
+        padding: 0.6em;
+        border-radius: 4px;
+        background: burlywood;
+        color: #231F20;
+    }
+
+    .bullet li:before {
+        position: absolute;
+        top: -0.7em;
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        font-size: 16px;
+        font-weight: bold;
+        color: blanchedalmond;
+        background: burlywood;
+        border-radius: 50%;
+        counter-increment: li;
+        content: counter(li);
+    }
+
+    #Hit_Maker {
+        position: static;
+        width: 100%;
+        height: 100%;
+    }
+
+    #Hit_Maker > .X, #Hit_Maker > .Y {
+        position: fixed;
+        border: #be5858 1px dashed;
+    }
+
+    #Hit_Maker > .X {
+        width: 0;
+        height: 100%;
+        animation: infinite movX 100ms linear;
+    }
+
+    #Hit_Maker > .Y {
+        width: 100%;
+        height: 0;
+        animation: infinite movY 100ms linear;
+    }
+
+    @keyframes movX {
+        0% {
+            width: 0;
+            height: 100%;
+            left: var(--oldposx);
+        }
+        100% {
+            width: 0;
+            height: 100%;
+            left: var(--posx);
+        }
+    }
+
+    @keyframes movY {
+        0% {
+            width: 100%;
+            height: 0;
+            top: var(--oldposy);
+        }
+        100% {
+            width: 100%;
+            height: 0;
+            top: var(--posy);
+        }
+    }
+
+    #List_Task4 {
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .round {
+        border-radius: 100%;
+    }
+
+    .o {
+        min-height: 10px;
+        min-width: 10px;
+        position: fixed;
+        left: 50%;
+        top: 50%
+    }
+
+    .move1 {
+        animation: moving infinite 1.3s ease-in-out;
+    }
+
+    .move2 {
+        animation: moving infinite 1.2s ease-in-out;
+    }
+
+    .move3 {
+        animation: moving infinite 1.1s ease-in-out;
+    }
+
+    .move4 {
+        animation: moving infinite 1s ease-in-out;
+    }
+
+    .state {
+        left: var(--posx);
+        top: var(--posy);
+    }
+
+    @keyframes moving {
+        0% {
+            left: var(--oldposx);
+            top: var(--oldposy);
+        }
+        100% {
+            left: var(--posx);
+            top: var(--posy);
+        }
+
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 7%;
+        height: 100%;
+        background-color: burlywood;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .menu > button {
+        background-color: blanchedalmond;
+        margin: 10% 10% 10% 0;
+        border-radius: 0 10px 10px 0;
+        width: 80%;
+    }
+
+    .list {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        padding: 0 0 0 0;
+    }
+
+    li {
+
+        background-color: transparent;
+    }
+
+    li > a {
+        padding: 2px;
+        margin: 5px;
+        background-color: blanchedalmond;
+        border-radius: 4px;
+    }
+
+    textarea {
+        border-radius: 10px 10px 0 10px;
+        max-width: 100%;
+        min-width: 10%;
+        max-height: 100%;
+        min-height: 60px;
+        transition: none;
+        border: blanchedalmond 1px solid;
+        margin: 1px;
+    }
+
+    .hidden_form {
+        padding: 15px;
+        background: burlywood;
+        border-radius: 15px;
+        position: fixed;
+        top: 33%;
+        left: 33%;
+        width: 33%;
+        opacity: 100%;
+        right: 33%;
+    }
+
+    #disable_backround {
+        background: gray;
+        display: none;
+        opacity: 95%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        right: 0;
+        bottom: 0;
+    }
+</style>
+<body>
+<!--
+<div id="Hit_Maker">
+    <div class="X"></div>
+    <div class="Y"></div>
+</div>
+-->
+<div id="disable_backround">
+    <div class="col hidden_form">
+
+        <form name="Form_Task3_Hidden" class="row" align="center">
+            <input name="Input_Task3_Login_Hidden" id="input_task3_login_hidden" placeholder="Логин"
+                   style="border-radius: 15px">
+            <input name="Input_Task3_Password_Hidden" id="input_task3_password_hidden" placeholder="Пароль"
+                   style="border-radius: 15px">
+        </form>
+
+        <button name="Button_Task3_2" id="button_task3_2_hidden" style="min-width: 50%">Сохранить</button>
+    </div>
+</div>
+
+<!--<div class="disable_backround">-->
+
+<div class="menu">
+    <ul class="list" align="center">
+        <li align="center">Лабы.р.</li>
+        <ul align="center">
+            <li align="center">1 Лаба</li>
+            <li align="center">2 Лаба</li>
+            <li align="center"><a href="3lab.html">3 Лаба</a></li>
+            <li align="center"><a href="4lab.html">4 Лаба</a></li>
+            <li align="center"><a href="5lab.html">5 Лаба</a></li>
+            <li align="center"><a href="6lab.html">6 Лаба</a></li>
+            <li align="center"><a href="7lab.html">7 Лаба</a></li>
+            <li align="center"><a href="8lab.html">8 Лаба</a></li>
+            <li align="center"><a href="9lab.html">9 Лаба</a></li>
+            <li align="center"><a href="10lab.html">10 Лаба</a></li>
+            <li align="center"><a href="11lab.html">11 Лаба</a></li>
+        </ul>
+        <li align="center">""</li>
+        <li align="center">Инд.р.</li>
+        <ul align="center">
+            <li align="center"><a href="Bootstrap%20Indiv/index.html">Робото- техника</a></li>
+            <li align="center"><a href="Bootstrap%20Indiv/arduino.html">Arduino</a></li>
+            <li align="center"><a href="Bootstrap%20Indiv/raspberry.html">Raspberry Pi</a></li>
+        </ul>
+    </ul>
+</div>
+
+<div class="task">
+    <h2>Задание 1</h2>
+    <p class="text_task">
+        На странице должны быть поле для ввода текста и кнопка «Добавить».
+        Пользователь должен вводить предложения в поле.
+        При нажатии на кнопку предложение должно добавляться на страницу как элемент списка.
+        Для этого используйте шаблон `< li >${str}< /li >`, где str – введенное предложение.
+        При этом перед выводом на страницу шаблон необходимо передать в функцию как аргумент.
+        Функция должна следующим образом преобразовать предложение:
+         Удалите лишние пробелы с начала и конца.
+         Все цифры замените на слова (к примеру, «1» замените на «один»).
+        В итоге на странице будут отображаться все добавленные пользователем и преобразованные предложения.
+    </p>
+    <div class="row">
+        <ol class="bullet" id="Text_Task1"></ol>
+    </div>
+    <div class="row">
+        <form name="Form_Task1" style="width: 100%">
+            <input name="Input_Task1" id="input_task1" placeholder="Введите текст">
+        </form>
+        <button name="task1" id="task1">Запуск 1 задания</button>
+    </div>
+</div>
+
+<div class="task">
+    <h2>Задание 2</h2>
+    <p class="text_task">
+        На странице должно быть поле для ввода текста (используйте < textarea >).
+        В это поле пользователь будет вводить текст для дальнейшего анализа.
+        Создайте кнопки выполняющие следующие действия с помощью регулярных выражений:
+         Выводит отдельные «правильные» предложения (начинаются с большой буквы, заканчиваются знаком препинания).
+         Находит все числа (могут состоять из нескольких цифр) и заменяет их на слово «NUMBER».
+         Находит первые слова всех предложений (здесь могут помочь утверждения и символ «^», который соответствует
+        началу строки).
+    </p>
+    <div id="Text_Task2"></div>
+    <div class="col">
+        <div class="row">
+            <textarea id="TextArea_Task2"></textarea>
+            <button id="Button_Task2_4" title="Вставить случайный текст"
+                    style="max-width: 100px;max-height: 100px; width: 60px;height: 60px; min-width: 60px; min-height: 60px;">
+                <img src="https://cdn0.iconfinder.com/data/icons/entypo/100/retweet-1024.png" alt="rand_gen">
+            </button>
+        </div>
+        <div class="row">
+            <button id="Button_Task2_1">Правильные предложения</button>
+            <button id="Button_Task2_2">Найти и заменить все числа</button>
+            <button id="Button_Task2_3">Первые слова предложений</button>
+        </div>
+    </div>
+</div>
+
+<div class="task">
+    <h2>Задание 3</h2>
+    <p class="text_task">
+        Создайте форму для ввода логина и пароля пользователя и кнопку «Войти». При нажатии
+        на кнопку, если поля не пустые, должно проверяться есть ли данные в local storage по
+        пользователю с таким логином. Если такой пользователь есть, то совпадает ли введенный
+        пароль.
+         Если пароль не совпадает, то вывести сообщение об этом и на этом закончить
+        выполнение.
+         Если же пароль совпадает, то отобразить данные пользователя в форме с полями для
+        ввода (форму назначать можно сделать скрытой). Эти поля должны быть заполнены
+        данными пользователя.
+        Также должна появится кнопка «Сохранить», с помощью которой должно быть возможно
+        сохранить внесенные в поля изменения в local storage.
+        Данные пользователя: логин, пароль, должность, описание.
+        Если пользователя с введенным логином нет, то создать нового пользователя и также
+        отобразить ему форму для внесения и сохранения данных нового пользователя.
+        Данные пользователя должны быть представлены в виде объектов, так что для сохранения
+        и загрузки из local storage используйте работу с JSON.
+    </p>
+    <div class="row">
+        <form name="Form_Task3" style="width: 100%" align="center">
+            <input name="Input_Task3_Login" id="input_task3_login" placeholder="Логин"
+                   style="width: 49%;border-radius: 15px">
+            <input name="Input_Task3_Password" id="input_task3_password" placeholder="Пароль"
+                   style="width: 49%;border-radius: 15px">
+        </form>
+
+        <button name="Button_Task3" id="button_task3" style="width: 49%">Вход</button>
+        <button id="button_task3_2" title="Удалить все записи" style="margin-left: 5px; height: 60px; width: 60px; min-height: 60px; min-width: 60px; padding: 10px">
+            <img src="http://cdn.onlinewebfonts.com/svg/img_523425.png" alt="delete_users" style="margin: auto; max-width: 95%; max-height: 95%">
+        </button>
+    </div>
+</div>
+<!--</div>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    document.getElementById('TextArea_Task2').value = `Напишите текст или нажмите кнопку генерации текста`
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    $(document).ready(function () {
+
+        document.querySelector('#task1').addEventListener("click", function (e) {
+            let form = document.forms.Form_Task1
+            let input = form.elements.Input_Task1
+            if (input.value === "") {
+                alert("А где!?")
+                return
+            }
+            let str = input.value
+            str = str.replaceAll('1', 'один')
+                .replaceAll('2', 'два')
+                .replaceAll('3', 'три')
+                .replaceAll('4', 'четыре')
+                .replaceAll('5', 'пять')
+                .replaceAll('6', 'шесть')
+                .replaceAll('7', 'семь')
+                .replaceAll('8', 'восемь')
+                .replaceAll('9', 'девять')
+                .replaceAll('0', 'нуль')
+                .trimStart()
+                .trimStart()
+            input.value = ""
+            str = `<li>${str}</li>`
+            alert(str)
+            document.getElementById('Text_Task1').innerHTML += str
+        });
+
+        //рандомайзер текста
+        document.querySelector('#Button_Task2_4').addEventListener("click", function (e) {
+
+            let iqery = true
+
+            let paras = prompt("Количество параграфов")
+
+            if (iqery) {
+                const settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://baconator-bacon-ipsum.p.rapidapi.com/?type=all-meat&paras=" + paras,
+                    "method": "GET",
+                    "headers": {
+                        "X-RapidAPI-Key": "340c10a1f2msh9c9e46a7c557a58p1b3528jsn299db424285d",
+                        "X-RapidAPI-Host": "baconator-bacon-ipsum.p.rapidapi.com"
+                    }
+                };
+                $.ajax(settings).done(function (response) {
+                    let str = "\t"
+                    for (let i = 0; i < response.length; i++)
+                        str += response[i] + "\n\t"
+
+                    document.getElementById('TextArea_Task2').value = str.trimEnd()
+                    //alert(response)
+                    console.log(response);
+                });
+            }
+            /*else {
+                let paras = prompt("Количество параграфов")
+                const data = null;
+
+                const xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === this.DONE) {
+                        let str = "\t"
+                        for(let i =0;i<this.responseText.length;i++)
+                            str += this.responseText[i] + "\n\t"
+
+                        document.getElementById('TextArea_Task2').value = str
+                        //alert(response)
+                        console.log(response);
+                    }
+                });
+
+                xhr.open("GET", "https://baconator-bacon-ipsum.p.rapidapi.com/?type=all-meat&paras=" + paras);
+                xhr.setRequestHeader("X-RapidAPI-Key", "340c10a1f2msh9c9e46a7c557a58p1b3528jsn299db424285d");
+                xhr.setRequestHeader("X-RapidAPI-Host", "baconator-bacon-ipsum.p.rapidapi.com");
+
+                xhr.send(data);
+            }*/
+        })
+
+        // Правильные предложения
+        document.querySelector('#Button_Task2_1').addEventListener("click", function (e) {
+            let str = document.querySelector('#TextArea_Task2').value.split(".")
+            str.pop()
+            for (let i = 0; i < str.length; i++) {
+                str[i] = str[i].trimStart()
+                if (str[i][0] === str[i][0].toUpperCase())
+                    alert(str[i] + ".")
+            }
+        })
+
+        // числа
+        document.querySelector('#Button_Task2_2').addEventListener("click", function (e) {
+            let str = document.querySelector('#TextArea_Task2').value
+            str = str.replace(/[1234567890]/g, 'NUMBER')
+            while (str.match(/NUMBERNUMBER/))
+                str = str.replace(/NUMBERNUMBER/g, "NUMBER")
+            document.querySelector('#TextArea_Task2').value = str
+
+        })
+
+        // первое слово
+        document.querySelector('#Button_Task2_3').addEventListener("click", function (e) {
+            let str = document.querySelector('#TextArea_Task2').value.split(".")
+            str.pop()
+            for (let i = 0; i < str.length; i++) {
+                str[i] = str[i].trimStart()
+                alert(str[i].split(" ")[0])
+            }
+        })
+
+        class User {
+            login
+            pass
+            constructor(login, pass) {
+                this.login = login
+                this.pass = pass
+            }
+        }
+        let users = []
+        let find
+        document.querySelector('#button_task3').addEventListener("click", function (e) {
+            let form = document.forms.Form_Task3
+            let login = form.elements.Input_Task3_Login.value
+            let pass = form.elements.Input_Task3_Password.value
+            if (login === "") {
+                alert("А где!? логин")
+                return
+            }
+            if (pass === "") {
+                alert("А где!? пароль")
+                return
+            }
+            users = JSON.parse(localStorage.getItem("users"));
+            if (users === null) {
+                users = []
+                users.push(new User(login, pass))
+                localStorage.setItem("users", JSON.stringify(users))
+                alert("Сохранен новый пользователь")
+            } else {
+                for(let i =0; i< users.length; i++) {
+                    if(users[i]["login"] === login){
+                        if(users[i]["pass"] === pass){
+                            let hidden_form = document.forms.Form_Task3_Hidden
+                            hidden_form.elements.Input_Task3_Login_Hidden.value = login
+                            hidden_form.elements.Input_Task3_Password_Hidden.value = pass
+                            find = i
+                            document.querySelector('#disable_backround').style.display = 'block'
+                        } else {
+                            alert("Неверный пароль")
+                        }
+                        return
+                    }
+                }
+                users.push(new User(login, pass))
+                localStorage.setItem("users", JSON.stringify(users))
+                alert("Сохранен новый пользователь")
+            }
+        })
+        document.querySelector('#button_task3_2_hidden').addEventListener("click", function (e) {
+            let hidden_form = document.forms.Form_Task3_Hidden
+            let login = hidden_form.elements.Input_Task3_Login_Hidden.value
+            let pass = hidden_form.elements.Input_Task3_Password_Hidden.value
+            if (login === "") {
+                alert("А где!? логин")
+                return
+            }
+            if (pass === "") {
+                alert("А где!? пароль")
+                return
+            }
+
+            for(let i =0; i< users.length; i++) {
+                if(i === find) continue
+                if(users[i]["login"] === login){
+                    alert("Такой логин уже существует")
+                    return
+                }
+            }
+
+            users[find]["login"] = login
+            users[find]["pass"] = pass
+            localStorage.setItem("users", JSON.stringify(users))
+
+            document.querySelector('#disable_backround').style.display = 'none'
+        })
+        document.querySelector('#button_task3_2').addEventListener("click", function (e) {
+            localStorage.clear()
+        })
+    });
+</script>
+</body>
+</html>
