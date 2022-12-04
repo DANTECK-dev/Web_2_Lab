@@ -28,11 +28,39 @@
     display: none;
 }
 
-
+button{
+    max-height: 46px;
+}
 
 *, *::before, *::after {
     transition: 0.8s ease-in-out;
+    outline: none;
 }
+*:active, *:focus-visible {
+    outline: none;
+}
+
+button:active, button:focus-visible, input:active, input:focus-visible, textarea:active, textarea:focus-visible {
+    outline: 1px solid red;
+}
+#Button_Table_Save,#Button_Table_Delete{
+    width: 20%;
+    background-color: orange;
+    height: 40px;
+    border-radius: 10px; border: none;
+}
+input:hover, textarea:hover {
+     border: #00BFFF 1px solid;
+}
+input{
+    background-color: lightgray;
+    width: 20%;
+    height: 40px;
+    border-radius: 10px;
+    border: gray 1px solid;
+}
+
+
 
 .header a, a:hover {
     color: #f0ad4e;
@@ -214,10 +242,6 @@ a:hover::after {
     color: #ababab;
 }
 
-button {
-    max-height: 46px;
-}
-
 .width > li > a {
     text-align: center;
     border-radius: 4px;
@@ -393,10 +417,11 @@ td>a:hover::after
     font-size: 30px;
     right: 0;
     width: 50px;
+    background-color: orange;
     height: 50px;
     border-radius: 15px 0 15px 0;
     border: 0;
-    animation: mov_close_ad infinite 30s ease-out;
+    animation: mov_close_ad infinite 10s ease-out;
 }
 #Close_AD:disabled{
     opacity: 95%;
@@ -404,10 +429,12 @@ td>a:hover::after
 @keyframes mov_close_ad {
     0% {
         color: white;
+        background-color: black;
         box-shadow: inset 50px 50px gray;
     }
     100% {
         color: black;
+        background-color: white;
         box-shadow: inset 0 0 gray;
     }
 
@@ -415,3 +442,4 @@ td>a:hover::after
 #AD_Content{
     text-align: center;
 }
+.active_menu {border-bottom: 2px solid;}

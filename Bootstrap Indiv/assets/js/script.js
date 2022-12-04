@@ -1,35 +1,18 @@
 window.onload = function () {
-    document.body.classList.add('loaded_hiding');
-    window.setTimeout(function () {
-        document.body.classList.add('loaded');
-        document.body.classList.remove('loaded_hiding');
-    }, 500);
-
-    let Closed_AD = true
-
-    // закрытие рекламы
-    document.querySelector('#Close_AD').addEventListener("click", function (e) {
-        document.getElementById('disable_backround').style.display = 'none'
-        document.getElementById('disable_content').style.display = 'block'
-        Closed_AD = true
-    })
-
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
+    let debug = false
     class Table {
         matrix
 
-        constructor(matrix) {
-            this.matrix = matrix
+        constructor() {
+            this.Reload()
         }
 
         GetTable() {
+            //alert(this.matrix)
             let str = "<tbody>"
             for (let row = 0; row < this.matrix.length; row++) {
                 str += `<tr>`
-                let rows = matrixx[row]
+                let rows = this.matrix[row]
                 for (let col = 0; col < rows.length; col++) {
                     if (this.matrix[row][col].indexOf("@#strong#@") >= 0) {
                         str += `<td><strong>` + this.matrix[row][col].replace("@#strong#@", "") + `</strong></td>`
@@ -49,32 +32,135 @@ window.onload = function () {
             }
             return (str + `</tbody>`)
         }
+        Reload(){
+            if(debug) {
+                alert("after reload")
+                alert("this.matrix" + this.matrix)
+                alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
+            }
+
+            if (JSON.parse(localStorage.getItem('matrix')) === undefined || JSON.parse(localStorage.getItem('matrix')) === null){
+                if(debug)alert("empty")
+                this.matrix = [
+                    ["@#3#@Одноплатный мини-ПК Raspberry Pi"],
+                    [" ", "@#strong#@Model A", "@#strong#@Model B"],
+                    ["@#strong#@Цена", "$25", "$35"],
+                    ["@#strong#@System-on-a-chip (SoC)", "@#2#@Broadcom BCM2835 (CPU + GPU)"],
+                    ["@#strong#@CPU", "@#2#@700 МГц ARM11 (ядро ARM1176JZF-S), возможен разгон до 1 ГГц"],
+                    ["@#strong#@GPU", "@#2#@Broadcom VideoCore IV"],
+                    ["@#strong#@Стандарты", "@#2#@OpenGL ES 1.1/2.0, OpenVG 1.1, Open EGL, OpenMAX"],
+                    ["@#strong#@Аппаратные кодеки", "@#2#@H.264 (1080p30, high-profile); MPEG-2 и VC-1 (лицензия продаётся отдельно)"],
+                    ["@#strong#@Память (SDRAM, общая)", "@#2#@256 Мбайт", "512 Мбайт; 256 Мбайт (до 15.10.2012)"],
+                    ["@#strong#@Порты USB 2.0", "1", "2"],
+                    ["@#strong#@Видеовыход", "@#2#@1 x HDMI 1.3a (CEC), 1 x RCA (576i/480i, PAL-BGHID/M/N,NTSC, NTSC-J)"],
+                    ["@#strong#@Аудиовыход", "@#2#@Гнездо 3,5 мм, HDMI", ""],
+                    ["@#strong#@Карт-ридер", "@#2#@SD/MMC/SDIO"],
+                    ["@#strong#@Сеть", "-", "Ethernet-порт RJ45 10/100 Мбит/с"],
+                    ["@#strong#@Интерфейсы", "@#2#@20 x GPIO (SPI, I^(2)C, UART, TTL); MIPI CSI-2, MIPI DSI"],
+                    ["@#strong#@Энергопотребление", "500 мА (2,5 Вт)", "700 мА (3,5 Вт)"],
+                    ["@#strong#@Питание", "@#2#@5 В через порт micro-USB или GPIO"],
+                    ["@#strong#@Размеры", "@#2#@85,6x56x21 мм"],
+                    ["@#strong#@Масса", "@#2#@54 г"]
+                ]
+                localStorage.setItem('matrix', JSON.stringify(this.matrix))
+            } else {
+                this.matrix = JSON.parse(localStorage.getItem('matrix'))
+            }
+
+            if(debug) {
+                alert("before reload")
+                alert("this.matrix" + this.matrix)
+                alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
+            }
+        }
+        Save(){
+            if(debug) {
+                alert("after save")
+                alert("this.matrix" + this.matrix)
+                alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
+            }
+
+            if(this.matrix === undefined || this.matrix === null)
+                this.Reload()
+            else{
+                localStorage.setItem('matrix', JSON.stringify(this.matrix))
+            }
+
+            if(debug) {
+                alert("before save")
+                alert("this.matrix" + this.matrix)
+                alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
+            }
+        }
     }
 
-    let matrixx = [
-        ["@#3#@Одноплатный мини-ПК Raspberry Pi"],
-        [" ", "@#strong#@Model A", "@#strong#@Model B"],
-        ["@#strong#@Цена", "$25", "$35"],
-        ["@#strong#@System-on-a-chip (SoC)", "@#2#@Broadcom BCM2835 (CPU + GPU)"],
-        ["@#strong#@CPU", "@#2#@700 МГц ARM11 (ядро ARM1176JZF-S), возможен разгон до 1 ГГц"],
-        ["@#strong#@GPU", "@#2#@Broadcom VideoCore IV"],
-        ["@#strong#@Стандарты", "@#2#@OpenGL ES 1.1/2.0, OpenVG 1.1, Open EGL, OpenMAX"],
-        ["@#strong#@Аппаратные кодеки", "@#2#@H.264 (1080p30, high-profile); MPEG-2 и VC-1 (лицензия продаётся отдельно)"],
-        ["@#strong#@Память (SDRAM, общая)", "@#2#@256 Мбайт", "512 Мбайт; 256 Мбайт (до 15.10.2012)"],
-        ["@#strong#@Порты USB 2.0", "1", "2"],
-        ["@#strong#@Видеовыход", "@#2#@1 x HDMI 1.3a (CEC), 1 x RCA (576i/480i, PAL-BGHID/M/N,NTSC, NTSC-J)"],
-        ["@#strong#@Аудиовыход", "@#2#@Гнездо 3,5 мм, HDMI", ""],
-        ["@#strong#@Карт-ридер", "@#2#@SD/MMC/SDIO"],
-        ["@#strong#@Сеть", "-", "Ethernet-порт RJ45 10/100 Мбит/с"],
-        ["@#strong#@Интерфейсы", "@#2#@20 x GPIO (SPI, I^(2)C, UART, TTL); MIPI CSI-2, MIPI DSI"],
-        ["@#strong#@Энергопотребление", "500 мА (2,5 Вт)", "700 мА (3,5 Вт)"],
-        ["@#strong#@Питание", "@#2#@5 В через порт micro-USB или GPIO"],
-        ["@#strong#@Размеры", "@#2#@85,6x56x21 мм"],
-        ["@#strong#@Масса", "@#2#@54 г"]
-    ];
-    let table = new Table(matrixx)
+    let table = new Table()
+
     if (document.getElementById('table') !== null)
         document.getElementById('table').innerHTML = table.GetTable()
+
+    document.getElementById('Button_Table_Save').addEventListener("click", function (e) {
+        e.preventDefault();
+        let form = document.forms.Input_Table
+        let header = form.elements.Input_Table_Header.value
+        let input_1 = form.elements.Input_Table_1_Column.value
+        let input_2 = form.elements.Input_Table_2_Column.value
+        if (header.trim() === "") {
+            alert("Введите заголовок")
+            return
+        }
+        if (input_1.trim() === "" && input_2.trim() === "") {
+            alert("Введите хотя-бы один столбец")
+            return
+        }
+        let str
+        if (input_1.trim() === "" || input_2.trim() === "") {
+            str = ["@#strong#@" + header, "@#2#@" + input_1 + input_2]
+        } else {
+            str = ["@#strong#@" + header, input_1, input_2]
+        }
+        table.matrix.push(str)
+        if(debug)alert(table.matrix)
+        table.Save()
+        document.getElementById('table').innerHTML = table.GetTable()
+    })
+    document.getElementById('Button_Table_Delete').addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.clear()
+        table.Reload()
+        document.getElementById('table').innerHTML = table.GetTable()
+    })
+
+
+    document.getElementById('Button_Search').addEventListener("click", function (e){
+        e.preventDefault();
+        let Ps = document.getElementsByTagName('p')
+        let input = document.getElementById('Input_Search').value
+        for(let i = 0; i < Ps.length; i++){
+            if(Ps[i].toString().match(input).length > 0)
+                alert(Ps[i])
+        }
+    })
+
+    document.body.classList.add('loaded_hiding');
+    window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+    }, 500);
+
+    let Closed_AD = true
+
+    // закрытие рекламы
+    document.querySelector('#Close_AD').addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById('disable_backround').style.display = 'none'
+        document.getElementById('disable_content').style.display = 'block'
+        Closed_AD = true
+    })
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 
     class Link {
         hyperlink
@@ -127,6 +213,7 @@ window.onload = function () {
                 table.item(i).style.color = '#222'
             }
             document.getElementsByTagName("footer").item(0).style.borderColor = '#000'
+            document.getElementsByClassName('AD').item(0).style.backgroundColor = '#fdfdfd'
         } else {
             console.log("сейчас ночь")
             document.body.style.background = '#222';
@@ -152,6 +239,7 @@ window.onload = function () {
                 table.item(i).style.color = '#aaa'
             }
             document.getElementsByTagName("footer").item(0).style.borderColor = '#f9f9f9'
+            document.getElementsByClassName('AD').item(0).style.backgroundColor = '#222'
         }
         return !day
     }
@@ -218,7 +306,8 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
-        if (Closed_AD) {
+        //if (Closed_AD) {
+            if(false) {
             let AD = getRandomInt(0, 10) === 3
             console.log(AD)
             if (AD) {
@@ -268,11 +357,11 @@ window.onload = function () {
 
                             //alert(response)
                             document.getElementById('Close_AD').disabled = true
-                            document.getElementById('Close_AD').style.animation = 'mov_close_ad infinite 30s ease-out'
-                            window.setTimeout(function (){
+                            document.getElementById('Close_AD').style.animation = 'mov_close_ad infinite 10s ease-out'
+                            window.setTimeout(function () {
                                 document.getElementById('Close_AD').disabled = false
                                 document.getElementById('Close_AD').style.animation = 'none'
-                            },30*1000)
+                            }, 10 * 1000)
                             document.getElementById('AD_Content').innerHTML = img + header + text
                             document.getElementById('disable_backround').style.display = 'block'
                             document.getElementById('disable_content').style.display = 'none'
@@ -286,5 +375,24 @@ window.onload = function () {
         }
     }, 1000);
 
+    //window.addEventListener('scroll', event => {
+    //    let navigationLinks = document.querySelectorAll('#left_menu li a');
+    //    let fromTop = window.scrollY;
+    //    //console.log(fromTop)
+    //    navigationLinks.forEach(link => {
+    //        let section = document.getElementsByClassName(link.hash.replace('#',''))
+    //        console.log(section)
+    //        if (
+    //            section.offsetTop <= fromTop &&
+    //            (section.offsetTop + section.offsetHeight) > fromTop
+    //        ) {
+    //            console.log("add active")
+    //            link.classList.add('active_menu');
+    //        } else {
+    //            console.log("remove active")
+    //            link.classList.remove('active_menu');
+    //        }
+    //    });
+    //});
 
 }
