@@ -306,8 +306,8 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
-        //if (Closed_AD) {
-            if(false) {
+        if (Closed_AD) {
+            //if(false) {
             let AD = getRandomInt(0, 10) === 3
             console.log(AD)
             if (AD) {
