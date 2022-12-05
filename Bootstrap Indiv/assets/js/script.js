@@ -244,6 +244,18 @@ window.onload = function () {
         return !day
     }
 
+    let arr = []
+    document.querySelector('#search_button').addEventListener("click", function (e) {
+        let input = document.getElementById('search_input')
+        alert(input.value)
+        if (input.value === "") {
+            alert("А где!?")
+            return
+        }
+        arr.push(input.value)
+        alert(arr)
+    });
+
     let now = new Date();
     let clock = document.getElementById("clock");
     clock.innerHTML = "Текущее время: " + now.toLocaleTimeString().split(':')[0] + ":" + now.toLocaleTimeString().split(':')[1];
