@@ -1,5 +1,6 @@
 window.onload = function () {
     let debug = false
+
     class Table {
         matrix
 
@@ -32,15 +33,16 @@ window.onload = function () {
             }
             return (str + `</tbody>`)
         }
-        Reload(){
-            if(debug) {
+
+        Reload() {
+            if (debug) {
                 alert("after reload")
                 alert("this.matrix" + this.matrix)
                 alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
             }
 
-            if (JSON.parse(localStorage.getItem('matrix')) === undefined || JSON.parse(localStorage.getItem('matrix')) === null){
-                if(debug)alert("empty")
+            if (JSON.parse(localStorage.getItem('matrix')) === undefined || JSON.parse(localStorage.getItem('matrix')) === null) {
+                if (debug) alert("empty")
                 this.matrix = [
                     ["@#3#@Одноплатный мини-ПК Raspberry Pi"],
                     [" ", "@#strong#@Model A", "@#strong#@Model B"],
@@ -67,26 +69,27 @@ window.onload = function () {
                 this.matrix = JSON.parse(localStorage.getItem('matrix'))
             }
 
-            if(debug) {
+            if (debug) {
                 alert("before reload")
                 alert("this.matrix" + this.matrix)
                 alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
             }
         }
-        Save(){
-            if(debug) {
+
+        Save() {
+            if (debug) {
                 alert("after save")
                 alert("this.matrix" + this.matrix)
                 alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
             }
 
-            if(this.matrix === undefined || this.matrix === null)
+            if (this.matrix === undefined || this.matrix === null)
                 this.Reload()
-            else{
+            else {
                 localStorage.setItem('matrix', JSON.stringify(this.matrix))
             }
 
-            if(debug) {
+            if (debug) {
                 alert("before save")
                 alert("this.matrix" + this.matrix)
                 alert("JSON.parse(localStorage.getItem(matrix))" + JSON.parse(localStorage.getItem('matrix')))
@@ -96,51 +99,53 @@ window.onload = function () {
 
     let table = new Table()
 
-    if (document.getElementById('table') !== null)
+    if (document.getElementById('table') !== null) {
         document.getElementById('table').innerHTML = table.GetTable()
+        document.getElementById('Button_Table_Save').addEventListener("click", function (e) {
+            e.preventDefault();
+            let form = document.forms.Input_Table
+            let header = form.elements.Input_Table_Header.value
+            let input_1 = form.elements.Input_Table_1_Column.value
+            let input_2 = form.elements.Input_Table_2_Column.value
+            if (header.trim() === "") {
+                alert("Введите заголовок")
+                return
+            }
+            if (input_1.trim() === "" && input_2.trim() === "") {
+                alert("Введите хотя-бы один столбец")
+                return
+            }
+            let str
+            if (input_1.trim() === "" || input_2.trim() === "") {
+                str = ["@#strong#@" + header, "@#2#@" + input_1 + input_2]
+            } else {
+                str = ["@#strong#@" + header, input_1, input_2]
+            }
+            table.matrix.push(str)
+            if (debug) alert(table.matrix)
+            table.Save()
+            document.getElementById('table').innerHTML = table.GetTable()
+        })
+        document.getElementById('Button_Table_Delete').addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.clear()
+            table.Reload()
+            document.getElementById('table').innerHTML = table.GetTable()
+        })
+    }
 
-    document.getElementById('Button_Table_Save').addEventListener("click", function (e) {
-        e.preventDefault();
-        let form = document.forms.Input_Table
-        let header = form.elements.Input_Table_Header.value
-        let input_1 = form.elements.Input_Table_1_Column.value
-        let input_2 = form.elements.Input_Table_2_Column.value
-        if (header.trim() === "") {
-            alert("Введите заголовок")
-            return
-        }
-        if (input_1.trim() === "" && input_2.trim() === "") {
-            alert("Введите хотя-бы один столбец")
-            return
-        }
-        let str
-        if (input_1.trim() === "" || input_2.trim() === "") {
-            str = ["@#strong#@" + header, "@#2#@" + input_1 + input_2]
-        } else {
-            str = ["@#strong#@" + header, input_1, input_2]
-        }
-        table.matrix.push(str)
-        if(debug)alert(table.matrix)
-        table.Save()
-        document.getElementById('table').innerHTML = table.GetTable()
-    })
-    document.getElementById('Button_Table_Delete').addEventListener("click", function (e) {
-        e.preventDefault();
-        localStorage.clear()
-        table.Reload()
-        document.getElementById('table').innerHTML = table.GetTable()
-    })
 
-
-    document.getElementById('Button_Search').addEventListener("click", function (e){
-        e.preventDefault();
-        let Ps = document.getElementsByTagName('p')
-        let input = document.getElementById('Input_Search').value
-        for(let i = 0; i < Ps.length; i++){
-            if(Ps[i].toString().match(input).length > 0)
-                alert(Ps[i])
-        }
-    })
+    for (let i = 0; i < document.getElementsByClassName('Button_Search').length; i++)
+        document.getElementsByClassName('Button_Search')[i].addEventListener("click", function (e) {
+            e.preventDefault();
+            alert("Поиск")
+            //let Ps = document.getElementsByTagName('p')
+            //let input = document.getElementById('Input_Search').value
+            //for(let i = 0; i < Ps.length; i++){
+            //    if(Ps[i].toString().match(input).length > 0)
+            //        alert(Ps[i])
+            //}
+        })
 
     document.body.classList.add('loaded_hiding');
     window.setTimeout(function () {
@@ -245,16 +250,16 @@ window.onload = function () {
     }
 
     let arr = []
-    document.querySelector('#search_button').addEventListener("click", function (e) {
-        let input = document.getElementById('search_input')
-        alert(input.value)
-        if (input.value === "") {
-            alert("А где!?")
-            return
-        }
-        arr.push(input.value)
-        alert(arr)
-    });
+    //document.querySelector('#search_button').addEventListener("click", function (e) {
+    //    let input = document.getElementById('search_input')
+    //    alert(input.value)
+    //    if (input.value === "") {
+    //        alert("А где!?")
+    //        return
+    //    }
+    //    arr.push(input.value)
+    //    alert(arr)
+    //});
 
     let now = new Date();
     let clock = document.getElementById("clock");
@@ -369,11 +374,11 @@ window.onload = function () {
 
                             //alert(response)
                             document.getElementById('Close_AD').disabled = true
-                            document.getElementById('Close_AD').style.animation = 'mov_close_ad infinite 10s ease-out'
+                            document.getElementById('Close_AD').style.animation = 'mov_close_ad infinite 15s ease-out'
                             window.setTimeout(function () {
                                 document.getElementById('Close_AD').disabled = false
                                 document.getElementById('Close_AD').style.animation = 'none'
-                            }, 10 * 1000)
+                            }, 15 * 1000)
                             document.getElementById('AD_Content').innerHTML = img + header + text
                             document.getElementById('disable_backround').style.display = 'block'
                             document.getElementById('disable_content').style.display = 'none'
@@ -386,6 +391,43 @@ window.onload = function () {
             }
         }
     }, 1000);
+
+    let descriptions = [
+        "Робототехника, " +         // роботехника(index.html)
+        "Что такое роботехника, " +
+        "Основы робототехники, " +
+        "Классы роботов, " +
+        "Компоненты роботов, " +
+        "Способы перемещения, " +
+        "Способы управления, " +
+        "Подвиды современных роботов",
+
+        "Ардуино, " +               // Arduino(arduino.html)
+        "Что такое Arduino?, " +
+        "Железо (аппаратная часть), " +
+        "Софт (программная часть), " +
+        "Программирование, " +
+        "Библиотеки, " +
+        "Чистый Си? Писать без библиотек?, " +
+        "Возможности, " +
+        "Хейтеры платформы, " +
+        "Полезные страницы",
+
+        "Raspberry Pi, " +          // Raspberry Pi(raspberry.html)
+        "Малина Пи, " +
+        "История Raspberry Pi, " +
+        "Технические характеристики и возможности, " +
+        "Базовая настройка, " +
+        "Настройка BitTorrent Sync, " +
+        "Заключение"
+    ]
+
+    let index = 0
+    window.setInterval(function () {
+        document.getElementById('Description').innerText = descriptions[index]
+        index++
+        if (index > 2) index = 0
+    }, 5 * 1000)
 
     //window.addEventListener('scroll', event => {
     //    let navigationLinks = document.querySelectorAll('#left_menu li a');

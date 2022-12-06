@@ -100,7 +100,14 @@ input{
     border-radius: 0;
 }
 
+#Description{
+    width: 50%;
+}
+
 @media (max-width: 767px) {
+    #Description{
+        width: 100%;
+    }
     .nav-pills > li {
         float: none;
     }
@@ -421,7 +428,7 @@ td>a:hover::after
     height: 50px;
     border-radius: 15px 0 15px 0;
     border: 0;
-    animation: mov_close_ad infinite 10s ease-out;
+    animation: mov_close_ad infinite 15s ease-out;
 }
 #Close_AD:disabled{
     opacity: 95%;
