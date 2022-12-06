@@ -134,19 +134,6 @@ window.onload = function () {
         })
     }
 
-
-    for (let i = 0; i < document.getElementsByClassName('Button_Search').length; i++)
-        document.getElementsByClassName('Button_Search')[i].addEventListener("click", function (e) {
-            e.preventDefault();
-            alert("Поиск")
-            //let Ps = document.getElementsByTagName('p')
-            //let input = document.getElementById('Input_Search').value
-            //for(let i = 0; i < Ps.length; i++){
-            //    if(Ps[i].toString().match(input).length > 0)
-            //        alert(Ps[i])
-            //}
-        })
-
     document.body.classList.add('loaded_hiding');
     window.setTimeout(function () {
         document.body.classList.add('loaded');
@@ -184,9 +171,9 @@ window.onload = function () {
     }
 
     let links = [
+        new Link("index.html", "Робототехника", "blue"),
         new Link("arduino.html", "Arduino", "red"),
-        new Link("raspberry.html", "Raspberry", "green"),
-        new Link("index.html", "Главная", "blue"),
+        new Link("raspberry.html", "Raspberry", "green")
     ]
 
     const rand_link = links[getRandomInt(0, 3)]
@@ -323,8 +310,8 @@ window.onload = function () {
                 + now.toLocaleTimeString().split(':')[1]
                 + " Включена ночная тема";
         }
-        if (Closed_AD) {
-            //if(false) {
+        //if (Closed_AD) {
+        if (false) {
             let AD = getRandomInt(0, 10) === 3
             console.log(AD)
             if (AD) {
@@ -428,6 +415,30 @@ window.onload = function () {
         index++
         if (index > 2) index = 0
     }, 5 * 1000)
+
+    document.getElementById('Button_Search_visible').addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById('Result_Found_Visible').innerHTML = ""
+        let input = document.getElementById('Input_Search_visible')
+        if(input.value === "") return
+        for (let j = 0; j < descriptions.length; j++) {
+            if (new RegExp(input.value.trim().toLowerCase()).test(descriptions[j].trim().toLowerCase())) {
+                document.getElementById('Result_Found_Visible').innerHTML += `<a href=${links[j].hyperlink}>${links[j].tooltip}</a>`
+            }
+        }
+    })
+
+    document.getElementById('Button_Search_hidden').addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById('Result_Found_Hidden').innerHTML = ""
+        let input = document.getElementById('Input_Search_hidden')
+        if(input.value === "") return
+        for (let j = 0; j < descriptions.length; j++) {
+            if (new RegExp(input.value.trim().toLowerCase()).test(descriptions[j].trim().toLowerCase())) {
+                document.getElementById('Result_Found_Hidden').innerHTML += `<a href=${links[j].hyperlink}>${links[j].tooltip}</a>`
+            }
+        }
+    })
 
     //window.addEventListener('scroll', event => {
     //    let navigationLinks = document.querySelectorAll('#left_menu li a');
